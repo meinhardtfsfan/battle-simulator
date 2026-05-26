@@ -1,0 +1,603 @@
+     1	<!DOCTYPE html>
+     2	<html lang="zh-CN">
+     3	<head>
+     4	<meta charset="UTF-8">
+     5	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6	<title>模拟帝国 - 战斗模拟器</title>
+     7	<style>
+     8	  * { box-sizing: border-box; margin: 0; padding: 0; }
+     9	  body {
+    10	    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif;
+    11	    background: #1a1a2e;
+    12	    color: #e0e0e0;
+    13	    min-height: 100vh;
+    14	    padding: 10px;
+    15	  }
+    16	  .container { max-width: 900px; margin: 0 auto; }
+    17	  h1 {
+    18	    text-align: center;
+    19	    color: #f0c040;
+    20	    font-size: 1.5rem;
+    21	    margin-bottom: 2px;
+    22	  }
+    23	  .version-badge {
+    24	    text-align: center;
+    25	    color: #f0c040;
+    26	    font-size: 0.95rem;
+    27	    font-weight: bold;
+    28	    letter-spacing: 4px;
+    29	    margin-top: 4px;
+    30	    margin-bottom: 2px;
+    31	    opacity: 0.85;
+    32	  }
+    33	  .update-date {
+    34	    text-align: right;
+    35	    color: #666;
+    36	    font-size: 0.7rem;
+    37	    font-style: italic;
+    38	    margin-bottom: 15px;
+    39	    padding-right: 4px;
+    40	  }
+    41	  .card {
+    42	    background: #16213e;
+    43	    border-radius: 12px;
+    44	    padding: 15px;
+    45	    margin-bottom: 12px;
+    46	    border: 1px solid #0f3460;
+    47	  }
+    48	  .card-title {
+    49	    font-size: 1rem;
+    50	    font-weight: bold;
+    51	    margin-bottom: 10px;
+    52	    display: flex;
+    53	    align-items: center;
+    54	    gap: 6px;
+    55	  }
+    56	  .title-red { color: #ff6b6b; }
+    57	  .title-green { color: #6bff6b; }
+    58	  .title-gold { color: #f0c040; }
+    59	  .two-col {
+    60	    display: grid;
+    61	    grid-template-columns: 1fr 1fr;
+    62	    gap: 10px;
+    63	  }
+    64	  @media (max-width: 600px) {
+    65	    .two-col { grid-template-columns: 1fr; }
+    66	  }
+    67	  .form-group { margin-bottom: 10px; }
+    68	  label {
+    69	    display: block;
+    70	    font-size: 0.85rem;
+    71	    color: #a0a0a0;
+    72	    margin-bottom: 4px;
+    73	  }
+    74	  select, input[type="number"] {
+    75	    width: 100%;
+    76	    padding: 10px 12px;
+    77	    border-radius: 8px;
+    78	    border: 1px solid #0f3460;
+    79	    background: #0f3460;
+    80	    color: #fff;
+    81	    font-size: 1rem;
+    82	    outline: none;
+    83	  }
+    84	  select:focus, input:focus { border-color: #e94560; }
+    85	  .cap-hint {
+    86	    font-size: 0.75rem;
+    87	    color: #888;
+    88	    margin-top: 2px;
+    89	  }
+    90	  .mode-row {
+    91	    display: flex;
+    92	    gap: 15px;
+    93	    align-items: center;
+    94	    flex-wrap: wrap;
+    95	  }
+    96	  .mode-row label {
+    97	    display: inline-flex;
+    98	    align-items: center;
+    99	    gap: 5px;
+   100	    color: #e0e0e0;
+   101	    cursor: pointer;
+   102	  }
+   103	  .btn {
+   104	    width: 100%;
+   105	    padding: 14px;
+   106	    border: none;
+   107	    border-radius: 10px;
+   108	    font-size: 1.1rem;
+   109	    font-weight: bold;
+   110	    cursor: pointer;
+   111	    transition: all 0.2s;
+   112	  }
+   113	  .btn-primary {
+   114	    background: linear-gradient(135deg, #e94560, #c73e54);
+   115	    color: #fff;
+   116	  }
+   117	  .btn-primary:disabled {
+   118	    opacity: 0.5;
+   119	    cursor: not-allowed;
+   120	  }
+   121	  .btn-primary:active:not(:disabled) { transform: scale(0.98); opacity: 0.9; }
+   122	  .btn-secondary {
+   123	    background: #0f3460;
+   124	    color: #a0c4ff;
+   125	    margin-top: 8px;
+   126	  }
+   127	  .log-area {
+   128	    background: #0a0a0a;
+   129	    border-radius: 10px;
+   130	    padding: 12px;
+   131	    font-family: "Consolas", "Monaco", "Courier New", monospace;
+   132	    font-size: 0.85rem;
+   133	    line-height: 1.6;
+   134	    max-height: 450px;
+   135	    overflow-y: auto;
+   136	    white-space: pre-wrap;
+   137	    word-break: break-all;
+   138	    color: #d4d4d4;
+   139	  }
+   140	  .log-area .round { color: #569cd6; font-weight: bold; }
+   141	  .log-area .win { color: #f0c040; font-weight: bold; }
+   142	  .log-area .death { color: #e94560; font-weight: bold; }
+   143	  .log-area .reinforce { color: #9cdcfe; font-weight: bold; }
+   144	  .unit-stats {
+   145	    background: #0a1929;
+   146	    border-radius: 8px;
+   147	    padding: 10px 12px;
+   148	    margin-top: 8px;
+   149	    margin-bottom: 16px;
+   150	    font-size: 0.8rem;
+   151	    line-height: 2.0;
+   152	  }
+   153	  .unit-stats .stat-row {
+   154	    display: flex;
+   155	    justify-content: space-between;
+   156	    border-bottom: 1px solid #1a3a5c;
+   157	    padding: 2px 0;
+   158	  }
+   159	  .unit-stats .stat-row:last-child { border-bottom: none; }
+   160	  .unit-stats .stat-label { color: #a0a0a0; }
+   161	  .unit-stats .stat-value { color: #f0c040; font-weight: bold; }
+   162	  .unit-stats .no-skill { color: #666; font-style: italic; }
+   163	  .status-bar {
+   164	    text-align: center;
+   165	    padding: 8px;
+   166	    font-size: 0.8rem;
+   167	    color: #888;
+   168	  }
+   169	  input[type="radio"] {
+   170	    width: 18px;
+   171	    height: 18px;
+   172	    accent-color: #e94560;
+   173	  }
+   174	
+   175	  /* === 制作名单弹窗 === */
+   176	  .credits-btn {
+   177	    display: block;
+   178	    text-align: center;
+   179	    color: #888;
+   180	    font-size: 0.75rem;
+   181	    margin: 20px auto 4px;
+   182	    cursor: pointer;
+   183	    background: none;
+   184	    border: 1px solid #333;
+   185	    border-radius: 20px;
+   186	    padding: 6px 18px;
+   187	    transition: all 0.3s;
+   188	  }
+   189	  .credits-btn:hover {
+   190	    color: #f0c040;
+   191	    border-color: #f0c040;
+   192	    background: rgba(240, 192, 64, 0.05);
+   193	  }
+   194	  .copyright {
+   195	    text-align: center;
+   196	    color: #555;
+   197	    font-size: 0.65rem;
+   198	    margin-bottom: 10px;
+   199	  }
+   200
+   201	  .credits-overlay {
+   202	    display: none;
+   203	    position: fixed;
+   204	    top: 0; left: 0; right: 0; bottom: 0;
+   205	    background: rgba(0,0,0,0.75);
+   206	    z-index: 1000;
+   207	    justify-content: center;
+   208	    align-items: center;
+   209	    padding: 20px;
+   210	  }
+   211	  .credits-overlay.active { display: flex; }
+   212	  .credits-modal {
+   213	    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+   214	    border: 1px solid #f0c040;
+   215	    border-radius: 16px;
+   216	    max-width: 500px;
+   217	    width: 100%;
+   218	    max-height: 80vh;
+   219	    overflow-y: auto;
+   220	    position: relative;
+   221	    animation: modalIn 0.3s ease-out;
+   222	  }
+   223	  @keyframes modalIn {
+   224	    from { transform: scale(0.8); opacity: 0; }
+   225	    to { transform: scale(1); opacity: 1; }
+   226	  }
+   227	  .credits-header {
+   228	    background: linear-gradient(135deg, #0f3460, #1a4a7a);
+   229	    color: #a0c4ff;
+   230	    text-align: center;
+   231	    padding: 20px;
+   232	    border-radius: 16px 16px 0 0;
+   233	    position: sticky;
+   234	    top: 0;
+   235	    z-index: 10;
+   236	  }
+   237	  .credits-header h2 { font-size: 1.3rem; }
+   238	  .credits-close {
+   239	    position: absolute;
+   240	    top: 12px;
+   241	    right: 16px;
+   242	    background: none;
+   243	    border: none;
+   244	    color: #a0c4ff;
+   245	    font-size: 1.5rem;
+   246	    cursor: pointer;
+   247	    opacity: 0.7;
+   248	    transition: opacity 0.2s;
+   249	  }
+   250	  .credits-close:hover { opacity: 1; color: #fff; }
+   251	  .credits-body { padding: 20px; }
+   252	  .credits-section { margin-bottom: 24px; }
+   253	  .credits-section-title {
+   254	    color: #f0c040;
+   255	    font-size: 0.9rem;
+   256	    font-weight: bold;
+   257	    margin-bottom: 10px;
+   258	    padding-bottom: 6px;
+   259	    border-bottom: 1px dashed #333;
+   260	    display: flex;
+   261	    align-items: center;
+   262	    gap: 6px;
+   263	  }
+   264	  .credits-row {
+   265	    display: flex;
+   266	    justify-content: space-between;
+   267	    align-items: center;
+   268	    padding: 8px 0;
+   269	    border-bottom: 1px solid #1a2a4a;
+   270	    font-size: 0.85rem;
+   271	  }
+   272	  .credits-row:last-child { border-bottom: none; }
+   273	  .credits-role { color: #a0a0a0; }
+   274	  .credits-name { color: #6bc0ff; font-weight: bold; }
+   275	  .credits-footer {
+   276	    text-align: center;
+   277	    padding: 16px 20px;
+   278	    border-top: 1px solid #333;
+   279	    color: #555;
+   280	    font-size: 0.7rem;
+   281	  }
+   282	  .credits-modal::-webkit-scrollbar { width: 6px; }
+   283	  .credits-modal::-webkit-scrollbar-track { background: #0a0a1a; }
+   284	  .credits-modal::-webkit-scrollbar-thumb { background: #f0c040; border-radius: 3px; }
+   285	</style>
+   286	</head>
+   287	<body>
+   288	<div class="container">
+   289	  <h1>模拟帝国 - 战斗模拟器</h1>
+   290	  <div class="version-badge">正式版 1.0</div>
+   291	  <div class="update-date">更新于 2026年5月26日</div>
+   292	
+   293	  <div class="card">
+   294	    <div class="two-col">
+   295	      <div>
+   296	        <div class="card-title title-red">红方</div>
+   297	        <div class="form-group">
+   298	          <label>兵种</label>
+   299	          <select id="unitA"></select>
+   300	        </div>
+   301	        <div class="unit-stats" id="statsA"></div>
+   302	        <div class="form-group">
+   303	          <label>初始数量</label>
+   304	          <input type="number" id="countA" value="149" min="1" oninput="const cap=UNITS_DB[selA.value]?.attributes?.max_troop_size||149;if(this.value>cap)this.value=cap">
+   305	          <div class="cap-hint" id="capA">上限: 149</div>
+   306	        </div>
+   307	        <div class="form-group">
+   308	          <label>部队组数</label>
+   309	          <input type="number" id="groupsA" value="1" min="1" max="10000" oninput="if(this.value>10000)this.value=10000">
+   310	          <div class="cap-hint">上限组数: 10000</div>
+   311	        </div>
+   312	      </div>
+   313	      <div>
+   314	        <div class="card-title title-green">绿方</div>
+   315	        <div class="form-group">
+   316	          <label>兵种</label>
+   317	          <select id="unitB"></select>
+   318	        </div>
+   319	        <div class="unit-stats" id="statsB"></div>
+   320	        <div class="form-group">
+   321	          <label>初始数量</label>
+   322	          <input type="number" id="countB" value="149" min="1" oninput="const cap=UNITS_DB[selB.value]?.attributes?.max_troop_size||149;if(this.value>cap)this.value=cap">
+   323	          <div class="cap-hint" id="capB">上限: 149</div>
+   324	        </div>
+   325	        <div class="form-group">
+   326	          <label>部队组数</label>
+   327	          <input type="number" id="groupsB" value="1" min="1" max="10000" oninput="if(this.value>10000)this.value=10000">
+   328	          <div class="cap-hint">上限组数: 10000</div>
+   329	        </div>
+   330	      </div>
+   331	    </div>
+   332	  </div>
+   333	
+   334	  <div class="card">
+   335	    <div class="card-title title-gold">战斗模式</div>
+   336	    <div class="mode-row">
+   337	      <label><input type="radio" name="mode" value="single" checked> 单组 1v1</label>
+   338	      <label><input type="radio" name="mode" value="relay"> 接力模式（多组）</label>
+   339	    </div>
+   340	  </div>
+   341	
+   342	  <div class="card">
+   343	    <button class="btn btn-primary" id="btnStart" onclick="startSim()">开始模拟</button>
+   344	    <button class="btn btn-secondary" onclick="clearLog()">清空日志</button>
+   345	  </div>
+   346	
+   347	  <div class="card">
+   348	    <div class="card-title title-gold">战斗日志</div>
+   349	    <div class="log-area" id="logArea"></div>
+   350	  </div>
+   351	
+   352	  <div class="status-bar" id="status">就绪</div>
+   353	
+   354	  <button class="credits-btn" onclick="openCredits()">制作名单</button>
+   355	  <div class="copyright">模拟模拟帝国制作委员会 &copy; 2026 | 版权所有</div>
+   356	</div>
+   357	
+   358	<!-- 制作名单弹窗 -->
+   359	<div class="credits-overlay" id="creditsOverlay" onclick="closeCredits(event)">
+   360	  <div class="credits-modal" onclick="event.stopPropagation()">
+   361	    <div class="credits-header">
+   362	      <button class="credits-close" onclick="closeCredits()">&times;</button>
+   363	      <h2>制作名单</h2>
+   364	    </div>
+   365	    <div class="credits-body">
+   366	      <div class="credits-section">
+   367	        <div class="credits-section-title">核心团队</div>
+   368	        <div class="credits-row"><span class="credits-role">总策划 / 制作人</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   369	        <div class="credits-row"><span class="credits-role">主程序 / 架构师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   370	        <div class="credits-row"><span class="credits-role">UI/UX 设计师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   371	        <div class="credits-row"><span class="credits-role">视觉美术总监</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   372	      </div>
+   373	      <div class="credits-section">
+   374	        <div class="credits-section-title">战斗引擎组</div>
+   375	        <div class="credits-row"><span class="credits-role">战斗系统设计师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   376	        <div class="credits-row"><span class="credits-role">伤害公式推导</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   377	        <div class="credits-row"><span class="credits-role">速度线算法工程师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   378	        <div class="credits-row"><span class="credits-role">反击逻辑架构师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   379	        <div class="credits-row"><span class="credits-role">RNG 随机数监督员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   380	      </div>
+   381	      <div class="credits-section">
+   382	        <div class="credits-section-title">技术支撑组</div>
+   383	        <div class="credits-row"><span class="credits-role">HTML 打字员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   384	        <div class="credits-row"><span class="credits-role">CSS 调色师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   385	        <div class="credits-row"><span class="credits-role">JavaScript 魔术师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   386	        <div class="credits-row"><span class="credits-role">浏览器兼容测试员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   387	        <div class="credits-row"><span class="credits-role">CDN 缓存对抗战士</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   388	        <div class="credits-row"><span class="credits-role">F12 控制台常客</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   389	        <div class="credits-row"><span class="credits-role">Bug 制造 &amp; 修复专家</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   390	      </div>
+   391	      <div class="credits-section">
+   392	        <div class="credits-section-title">测试团队</div>
+   393	        <div class="credits-row"><span class="credits-role">QA 总监</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   394	        <div class="credits-row"><span class="credits-role">万组压测工程师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   395	        <div class="credits-row"><span class="credits-role">浏览器崩溃记录保持者</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   396	        <div class="credits-row"><span class="credits-role">回合耗尽研究员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+   397	      </div>
+   398	    </div>
+   399	    <div class="credits-footer">
+   400	      模拟模拟帝国制作委员会 &copy; 2026 | 版权所有
+   401	    </div>
+   402	  </div>
+   403	</div>
+   404	
+   405	<script>
+   406	// ==================== 0. 数据库（前端仅用于 UI 显示） ====================
+   407	const UNITS_DB = {"殉教者(波斯)": {"name": "殉教者", "faction": "persian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 9, "defense": 8, "min_damage": 3, "max_damage": 4, "hp": 18}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "弓箭兵(波斯)": {"name": "弓箭兵", "faction": "persian", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 6, "defense": 8, "min_damage": 2, "max_damage": 5, "hp": 18}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "长矛步兵(波斯)": {"name": "长矛步兵", "faction": "persian", "attributes": {"speed": 5, "max_troop_size": 149, "attack": 11, "defense": 12, "min_damage": 4, "max_damage": 8, "hp": 30}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "象骑射手(波斯)": {"name": "象骑射手", "faction": "persian", "attributes": {"speed": 4, "max_troop_size": 124, "attack": 7, "defense": 12, "min_damage": 5, "max_damage": 10, "hp": 129}, "tags": {"role": "ranged", "size": 3, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "轻骑兵(波斯)": {"name": "轻骑兵", "faction": "persian", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 12, "defense": 12, "min_damage": 7, "max_damage": 7, "hp": 36}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "铁甲骑士(波斯)": {"name": "铁甲骑士", "faction": "persian", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 20, "defense": 17, "min_damage": 12, "max_damage": 17, "hp": 50}, "tags": {"role": "melee", "size":<response clipped><NOTE>Lines longer than **2000 characters** will be **truncated**.</NOTE>
+   408	
+   409	const SPECIAL_ABILITIES = {
+   410	  "影子武士(波斯)": {dodge: 0.50},
+   411	  "御林将军(中国)": {counter_immune: 1.00},
+   412	  "美洲虎武士(阿兹特克)": {counter_immune: 1.00},
+   413	  "荷鲁斯(埃及)": {fury: 1.50},
+   414	  "铁甲骑士(波斯)": {charge: 0.30},
+   415	  "斯巴达勇士(希腊)": {formation: true},
+   416	  "皇家木乃伊(埃及)": {rebirth: true},
+   417	  "女娲(中国)": {revive: 0.20},
+   418	  "半人马(希腊)": {rampage: 0.40},
+   419	  "审判者(阿兹特克)": {rampage: 0.40},
+   420	  "连弩校尉(中国)": {triple_crossbow: 0.50},
+   421	  "羽蛇神(阿兹特克)": {breath: 0.55},
+   422	  "长弓兵(埃及)": {gale: 0.20}
+   423	};
+   424	
+   425	// ==================== 1. 初始化下拉选单 ====================
+   426	const unitNames = Object.keys(UNITS_DB);
+   427	const selA = document.getElementById('unitA');
+   428	const selB = document.getElementById('unitB');
+   429	unitNames.forEach(name => {
+   430	  selA.add(new Option(name, name));
+   431	  selB.add(new Option(name, name));
+   432	});
+   433	selA.value = "影子武士(波斯)";
+   434	selB.value = "荷鲁斯(埃及)";
+   435	
+   436	const ROLE_LABELS = {
+   437	  melee: '近战', melee_counter: '反击', ranged: '远程',
+   438	  healer: '治疗', counter_attack: '反击', heal: '治疗'
+   439	};
+   440	const SKILL_DETAIL = {
+   441	  dodge: '躲闪-50%几率闪避攻击',
+   442	  counter_immune: '免疫反击-不会被反击',
+   443	  fury: '愤怒反击-反击提升一半威力',
+   444	  charge: '冲锋-首次攻击增加30%总伤害',
+   445	  formation: '战阵-攻击随机+7~10',
+   446	  rebirth: '转化复生-转化击杀数的一半',
+   447	  revive: '复活-35%几率复活20%单位',
+   448	  rampage: '怒斩-击杀后40%几率再攻击',
+   449	  triple_crossbow: '三连弩-3次射击，每次50%伤害',
+   450	  breath: '吐息-3次攻击，每次55%伤害',
+   451	  gale: '怒风-对远程单位提高20%总伤害'
+   452	};
+   453	
+   454	function fmtSpecial(unitName, spec) {
+   455	  if (!spec) {
+   456	    const data = UNITS_DB[unitName];
+   457	    if (data && data.tags.role === 'healer') return '治疗';
+   458	    return '<span class="no-skill">无</span>';
+   459	  }
+   460	  const parts = [];
+   461	  for (const [k, v] of Object.entries(spec)) {
+   462	    parts.push(SKILL_DETAIL[k] || k);
+   463	  }
+   464	  return parts.join('，');
+   465	}
+   466	
+   467	function updateUnitStats(unitName, containerId) {
+   468	  const data = UNITS_DB[unitName];
+   469	  const a = data.attributes;
+   470	  const t = data.tags;
+   471	  const spec = SPECIAL_ABILITIES[unitName];
+   472	  const roleLabel = ROLE_LABELS[t.role] || t.role;
+   473	  const skills = t.special_skills ? t.special_skills.map(s => ROLE_LABELS[s] || s) : [];
+   474	  const basicSkills = [roleLabel, ...skills.filter(s => s !== roleLabel)];
+   475	
+   476	  document.getElementById(containerId).innerHTML =
+   477	    '<div class="stat-row"><span class="stat-label">速度</span><span class="stat-value">' + a.speed + '</span></div>' +
+   478	    '<div class="stat-row"><span class="stat-label">攻击</span><span class="stat-value">' + a.attack + '</span></div>' +
+   479	    '<div class="stat-row"><span class="stat-label">防御</span><span class="stat-value">' + a.defense + '</span></div>' +
+   480	    '<div class="stat-row"><span class="stat-label">最小伤害</span><span class="stat-value">' + a.min_damage + '</span></div>' +
+   481	    '<div class="stat-row"><span class="stat-label">最大伤害</span><span class="stat-value">' + a.max_damage + '</span></div>' +
+   482	    '<div class="stat-row"><span class="stat-label">生命</span><span class="stat-value">' + a.hp + '</span></div>' +
+   483	    '<div class="stat-row"><span class="stat-label">基础技能</span><span class="stat-value">' + (basicSkills.length > 0 ? basicSkills.join('，') : '<span class="no-skill">无</span>') + '</span></div>' +
+   484	    '<div class="stat-row"><span class="stat-label">特色技能</span><span class="stat-value">' + fmtSpecial(unitName, spec) + '</span></div>';
+   485	}
+   486	
+   487	function updateCap(side) {
+   488	  const unit = side === 'a' ? selA.value : selB.value;
+   489	  const cap = UNITS_DB[unit].attributes.max_troop_size;
+   490	  document.getElementById('cap' + side.toUpperCase()).textContent = '上限: ' + cap;
+   491	  document.getElementById('count' + side.toUpperCase()).value = cap;
+   492	  updateUnitStats(unit, 'stats' + side.toUpperCase());
+   493	}
+   494	selA.onchange = () => updateCap('a');
+   495	selB.onchange = () => updateCap('b');
+   496	updateCap('a');
+   497	updateCap('b');
+   498	
+   499	// ==================== 2. UI 控制 ====================
+   500	const logArea = document.getElementById('logArea');
+   501	const status = document.getElementById('status');
+   502	
+   503	function appendLog(text) {
+   504	  const span = document.createElement('span');
+   505	  let html = text
+   506	    .replace(/\[\[R:([^\]]+)\]\]/g, '<span style="color:#ff6b6b;">$1</span>')
+   507	    .replace(/\[\[G:([^\]]+)\]\]/g, '<span style="color:#6bff6b;">$1</span>');
+   508	
+   509	  if (text.startsWith('---')) span.className = 'round';
+   510	  else if (text.includes('*') && text.includes('全军覆没')) span.className = 'death';
+   511	  else if (text.startsWith('>>>')) span.className = 'reinforce';
+   512	  else if (text.startsWith('===') && (text.includes('胜利') || text.includes('平局'))) span.className = 'win';
+   513	
+   514	  span.innerHTML = html + '\n';
+   515	  logArea.appendChild(span);
+   516	  logArea.scrollTop = logArea.scrollHeight;
+   517	}
+   518	
+   519	function clearLog() {
+   520	  logArea.innerHTML = '';
+   521	  status.textContent = '就绪';
+   522	}
+   523	
+   524	// ==================== 3. 战斗模拟 - 调用后端 API ====================
+   525	async function startSim() {
+   526	  const btn = document.getElementById('btnStart');
+   527	  btn.disabled = true;
+   528	  clearLog();
+   529	
+   530	  const unitA = selA.value;
+   531	  const unitB = selB.value;
+   532	  let countA = parseInt(document.getElementById('countA').value) || 1;
+   533	  let countB = parseInt(document.getElementById('countB').value) || 1;
+   534	  let groupsA = parseInt(document.getElementById('groupsA').value) || 1;
+   535	  let groupsB = parseInt(document.getElementById('groupsB').value) || 1;
+   536	  if (groupsA > 10000) groupsA = 10000;
+   537	  if (groupsB > 10000) groupsB = 10000;
+   538	
+   539	  const capA = UNITS_DB[unitA].attributes.max_troop_size;
+   540	  const capB = UNITS_DB[unitB].attributes.max_troop_size;
+   541	  if (countA > capA) countA = capA;
+   542	  if (countB > capB) countB = capB;
+   543	
+   544	  const mode = document.querySelector('input[name="mode"]:checked').value;
+   545	
+   546	  status.textContent = '模拟中...';
+   547	
+   548	  // 自动检测 API 路径（本地开发 vs Vercel 部署）
+   549	  const apiUrl = window.location.hostname === 'localhost'
+   550	    ? 'http://localhost:3000/api/simulate'
+   551	    : '/api/simulate';
+   552	
+   553	  try {
+   554	    const response = await fetch(apiUrl, {
+   555	      method: 'POST',
+   556	      headers: { 'Content-Type': 'application/json' },
+   557	      body: JSON.stringify({
+   558	        unitA, countA, groupsA,
+   559	        unitB, countB, groupsB,
+   560	        mode
+   561	      })
+   562	    });
+   563	
+   564	    if (!response.ok) {
+   565	      throw new Error('服务器错误: ' + response.status);
+   566	    }
+   567	
+   568	    const data = await response.json();
+   569	
+   570	    // 渲染日志
+   571	    data.logs.forEach(line => appendLog(line));
+   572	    status.textContent = '模拟完成';
+   573	
+   574	  } catch (err) {
+   575	    status.textContent = '错误: ' + err.message;
+   576	    console.error(err);
+   577	    // 降级提示：如果后端不可用，显示静态提示
+   578	    appendLog('=== 提示：后端服务未启动 ===');
+   579	    appendLog('本地开发请运行: npx vercel dev');
+   580	    appendLog('或访问 Vercel 部署地址');
+   581	  }
+   582	
+   583	  btn.disabled = false;
+   584	}
+   585	
+   586	// ==================== 4. 制作名单弹窗 ====================
+   587	function openCredits() {
+   588	  document.getElementById('creditsOverlay').classList.add('active');
+   589	  document.body.style.overflow = 'hidden';
+   590	}
+   591	function closeCredits(e) {
+   592	  if (!e || e.target === document.getElementById('creditsOverlay')) {
+   593	    document.getElementById('creditsOverlay').classList.remove('active');
+   594	    document.body.style.overflow = '';
+   595	  }
+   596	}
+   597	document.addEventListener('keydown', function(e) {
+   598	  if (e.key === 'Escape') closeCredits();
+   599	});
+   600	</script>
+   601	</body>
+   602	</html>
+   603
