@@ -940,7 +940,7 @@ async function startSim() {
   status.textContent = '连接后端模拟中...';
 
   try {
-    const response = await fetch(API_BASE + '/api/simulate', {
+    const response = await const response = await fetch('/api/simulate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
