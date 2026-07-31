@@ -1,1 +1,1666 @@
-PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9InpoLUNOIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAsIHVzZXItc2NhbGFibGU9bm8iPgo8dGl0bGU+5qGM5qCL5biG5Luj5aSrIOmmmea4rzwvdGl0bGU+CjxzdHlsZT4KICAqIHsgbWFyZ2luOjA7IHBhZGRpbmc6MDsgYm94LXNpemluZzogYm9yZGVyLWJveDsgfQogIGJvZHkgewogICAgYmFja2dyb3VuZDogIzBiMTEyMDsKICAgIGNvbG9yOiAjZTBlMGUwOwogICAgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgJ1NlZ29lIFVJJywgc2Fucy1zZXJpZjsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uOwogICAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICAgIG1pbi1oZWlnaHQ6IDEwMHZoOwogICAgcGFkZGluZzogMjBweDsKICAgIGdhcDogMjBweDsKICB9CiAgLmNvbnRhaW5lciB7IHdpZHRoOiAxMDAlOyBtYXgtd2lkdGg6IDEyMDBweDsgfQogIC5wYW5lbC1yb3cgeyBkaXNwbGF5OiBmbGV4OyBnYXA6IDIwcHg7IGZsZXgtd3JhcDogd3JhcDsgaustc3RpZnktY29udGVudDogY2VudGVyOyB9CiAgLmJvYXJkLXdyYXAgeyBmbGV4OiAxOyB9CgogIC8qIOe8lueguOino+iDjSBwYW5lbCAqLwqICAuc3RhdHMtcGFuZWwgewogICAgd2lkdGg6IDIzMHB4OwogICAgYmFja2dyb3VuZDogIzE2MjAzZDsKICAgIGJvcmRlcjogMXB4IHNvbGlkICMzMzQxNTU7CiAgICBib3JkZXItcmFkaXVzOiA4cHg7CiAgICBwYWRkaW5nOiAxOHBweDsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uOwogICAgZ2FwOiA2cHg7CiAgfQogIC5wYW5lbC1oZWFkZXIgewogICAgZm9udC1zaXplOiAxNnB4OyBmb250LXdlaWdodDogYm9sZDsKCXRleHQtYWxpZ246IGNlbnRlcjsKCW1hcmdpbi1ib3R0b206IDhweDsKCWNvbG9yOiAjNjBiOWZmOwogIH0KCiAgLnN0YXQtcm93IHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgZm9udC1zaXplOiAxNHB4OwogICAgcGFkZGluZzogM3B4IDA7CiAgfQogIC5zdGF0LWxhYmVsICB7IGNvbG9yOiAjOTRhM2I2OyB3aWR0aDogOTBweDsgfQogIC5zdGF0LXZhbHVlIHsgY29sb3I6ICNmZmY7IGZvbnQtd2VpZ2h0OiBib2xkOyB3aWR0aDogNjBweDsgdGV4dC1hbGlnbjogcmlnaHQ7IH0KCiAgLyogbW9kZSBzZWxlY3RvciAqLwqICAubW9kZS1zZWxlY3RvciB7CiAgICBkaXNwbGF5OiBmbGV4OwoJZ2FwOiA4cHg7CglmbGV4LXdyYXA6IHdyYXA7CglqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICB9CiAgLm1vZGUtYnRuIHsKICAgIGJhY2tncm91bmQ6ICMzMzQxNTU7IGNvbG9yOiAjY2RkMGQ1OwoJYm9yZGVyOiBub25lOyBib3JkZXItcmFkaXVzOiA2cHg7CglwYWRkaW5nOiA4cHggMThweDsKICAgIGN1cnNvcjogcG9pbnRlcjsKICAgIGZvbnQtc2l6ZTogMTRweDsKICAgIHRyYW5zaXRpb246IGFsbCAwLjJzOwogIH0KICAubW9kZS1idG4uYWN0aXZlIHsgYmFja2dyb3VuZDogIzI1NjNlYjsgY29sb3I6ICNmZmY7IH0KICAubW9kZS1idG46aG92ZXIgeyBiYWNrZ3JvdW5kOiAjNDc1NTY5OyB9CgoJLyogZXZlbnQgYnV0dG9ucyAqCgkuZXZlbnQtYnRuIHsKCWJhY2tncm91bmQ6ICMzMzQxNTU7IGNvbG9yOiAjY2RkMGQ1OwoJYm9yZGVyOiBub25lOyBib3JkZXItcmFkaXVzOiA2cHg7CglwYWRkaW5nOiA2cHggMTJweDsKCWN1cnNvcjogcG9pbnRlcjsKCWZvbnQtc2l6ZTogMTNweDsKCXRyYW5zaXRpb246IGFsbCAwLjJzOwoJZGlzcGxheTogZmxleDsKCWFsaWduLWl0ZW1zOiBjZW50ZXI7CglqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICB9CgkuZXZlbnQtYnRuOmhvdmVyIHsgYmFja2dyb3VuZDogIzQ3NTU2OTsgfQoJLmV2ZW50LWJ0bi5kaXNhYmxlZCB7IG9wYWNpdHk6IDAuMzsgY3Vyc29yOiBub3QtYWxsb3dlZDsgfQoKCS8qIGJhdHRsZSBsb2cgKi8KCS5iYXR0bGUtbG9nIHsKCWhlaWdodDogMTIwcHg7CglvdmVyZmxvdy15OiBhdXRvOwoJYmFja2dyb3VuZDogIzBiMTEyMDsKCWJvcmRlcjogMXB4IHNvbGlkICMzMzQxNTU7Cglib3JkZXItcmFkaXVzOiA2cHg7CglwYWRkaW5nOiA4cHg7CglkaXNwbGF5OiBmbGV4OwoJZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKCWZvbnQtc2l6ZTogMTNweDsKCWdhcDogMnB4OwogIH0KCS5jb250ZXh0LW1lbnUgewoJcG9zaXRpb246IGFic29sdXRlOwoJYmFja2dyb3VuZDogIzIzMzI1NTsKCWJvcmRlcjogMXB4IHNvbGlkICM0NzU1Njk7Cglib3JkZXItcmFkaXVzOiA2cHg7CglwYWRkaW5nOjRweDsKC3otaW5kZXg6IDEwMDsKCWRpc3BsYXk6IGZsZXg7CglmbGV4LWRpcmVjdGlvbjogY29sdW1uOwoJZ2FwOiAycHg7Cglmb250LXNpemU6IDE0cHg7CiAgfQoJLmNvbnRleHQtbWVudSBidXR0b24gewoJYmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7Cgljb2xvcjogI2NkZDBkNTsKCWJvcmRlcjogbm9uZTsKCXBhZGRpbmc6IDZweCAxMnB4OwoJdGV4dC1hbGlnbjogbGVmdDsKCWN1cnNvcjogcG9pbnRlcjsKCWJvcmRlci1yYWRpdXM6IDRweDsKICB9CgkuY29udGV4dC1tZW51IGJ1dHRvbjpob3ZlciB7IGJhY2tncm91bmQ6ICMzNzQxNTE7IH0KPC9zdHlsZT4KPC9oZWFkPgo8Ym9keT4KCjxkaXYgY2xhc3M9ImNvbnRhaW5lciI+Cgk8ZGl2IGNsYXNzPSJwYW5lbC1yb3ciPgoJCTxkaXYgY2xhc3M9InN0YXRzLXBhbmVsIj4KCQkJPGRpdiBjbGFzcz0icGFuZWwtaGVhZGVyIj7mj5bkvZznlKjmiLfnu5/nlJ88L2Rpdj4KCQkJPGRpdiBjbGFzcz0ic3RhdC1yb3ciPjxzcGFuIGNsYXNzPSJzdGF0LWxhYmVsIj7lhYXnm7jvvJo8L3NwYW4+PHNwYW4gY2xhc3M9InN0YXQtdmFsdWUiIGlkPSJyZWRHcm91cHMiPjE8L3NwYW4+PC9kaXY+CgkJCQkJPGRpdiBjbGFzcz0ic3RhdC1yb3ciPjxzcGFuIGNsYXNzPSJzdGF0LWxhYmVsIj7nrKzjgIbnlJ/nlKjvvJo8L3NwYW4+PHNwYW4gY2xhc3M9InN0YXQtdmFsdWUiIGlkPSJyZWRDb3VudCI+MTAwPC9zcGFuPjwvZGl2PgoJCQkJCTxkaXYgY2xhc3M9InN0YXQtcm93Ij48c3BhbiBjbGFzcz0ic3RhdC1sYWJlbCI+5Luj5aSr5byP77yaPC9zcGFuPjxzcGFuIGNsYXNzPSJzdGF0LXZhbHVlIiBpZD0icmVkVW5pdCI+5qGJ6b6Z55qE5Luj5aSrPC9zcGFuPjwvZGl2PgoJCQkJCQk8ZGl2IGNsYXNzPSJzdGF0LXJvdyI+PHNwYW4gY2xhc3M9InN0YXQtbGFiZWwiPuWwhueJueiDjOaYpe+8mjwvc3Bhbj48c3BhbiBjbGFzcz0ic3RhdC12YWx1ZSIgaWQ9InJlZE51bSI+MTAwPC9zcGFuPjwvZGl2PgoJCQkJCQkJPGRpdiBjbGFzcz0ic3RhdC1yb3ciPjxzcGFuIGNsYXNzPSJzdGF0LWxhYmVsIj7lubPlj7DjgIbnlJ/nlKjvvJo8L3NwYW4+PHNwYW4gY2xhc3M9InN0YXQtdmFsdWUiIGlkPSJyZWRBdHRhY2siPjIwPC9zcGFuPjwvZGl2PgoJCQkJCQkJCTxkaXYgY2xhc3M9InN0YXQtcm93Ij48c3BhbiBjbGFzcz0ic3RhdC1sYWJlbCI+5L+d5oqk44CA55Sf55So77yaPC9zcGFuPjxzcGFuIGNsYXNzPSJzdGF0LXZhbHVlIiBpZD0icmVkRGVmIj4xMDwvc3Bhbj48L2Rpdj4KCQkJPGRpdiBzdHlsZT0iaGVpZ2h0OjFweDsgYmFja2dyb3VuZDojMzM0MTU1OyBtYXJnaW46IDRweCAwOyI+PC9kaXY+CgkJCTxkaXYgY2xhc3M9InBhbmVsLWhlYWRlciI+572X6auY6aKd5aS05Luj5aSrPC9kaXY+CgkJCQkJPGRpdiBjbGFzcz0ic3RhdC1yb3ciPjxzcGFuIGNsYXNzPSJzdGF0LWxhYmVsIj7lhYXnm7jvvJo8L3NwYW4+PHNwYW4gY2xhc3M9InN0YXQtdmFsdWUiIGlkPSJncmVlbkdyb3VwcyI+MTwvc3Bhbj48L2Rpdj4KCQkJCQkJPGRpdiBjbGFzcz0ic3RhdC1yb3ciPjxzcGFuIGNsYXNzPSJzdGF0LWxhYmVsIj7nrKzjgIbnlJ/nlKjvvJo8L3NwYW4+PHNwYW4gY2xhc3M9InN0YXQtdmFsdWUiIGlkPSJncmVlbkNvdW50Ij4xMDA8L3NwYW4+PC9kaXY+CgkJCQkJCTxkaXYgY2xhc3M9InN0YXQtcm93Ij48c3BhbiBjbGFzcz0ic3RhdC1sYWJlbCI+5Luj5aSr5byP77yaPC9zcGFuPjxzcGFuIGNsYXNzPSJzdGF0LXZhbHVlIiBpZD0iZ3JlZW5Vbml0Ij7lrp7mj6XlrrblsI/luqY8L3NwYW4+PC9kaXY+CgkJCQkJCQk8ZGl2IGNsYXNzPSJzdGF0LXJvdyI+PHNwYW4gY2xhc3M9InN0YXQtbGFiZWwiPuWwhueJueiDjOaYpe+8mjwvc3Bhbj48c3BhbiBjbGFzcz0ic3RhdC12YWx1ZSIgaWQ9ImdyZWVuTnVtIj4xMDA8L3NwYW4+PC9kaXY+CgkJCQkJCQkJPGRpdiBjbGFzcz0ic3RhdC1yb3ciPjxzcGFuIGNsYXNzPSJzdGF0LWxhYmVsIj7lubPlj7DjgIbnlJ/nlKjvvJo8L3NwYW4+PHNwYW4gY2xhc3M9InN0YXQtdmFsdWUiIGlkPSJncmVlbkF0dGFjayI+MTU8L3NwYW4+PC9kaXY+CgkJCQkJCQkJCTxkaXYgY2xhc3M9InN0YXQtcm93Ij48c3BhbiBjbGFzcz0ic3RhdC1sYWJlbCI+5L+d5oqk44CA55Sf55So77yaPC9zcGFuPjxzcGFuIGNsYXNzPSJzdGF0LXZhbHVlIiBpZD0iZ3JlZW5EZWYiPjE1PC9zcGFuPjwvZGl2PgoJCTwvZGl2PgoKCQkJPGRpdiBjbGFzcz0ic3RhdHMtcGFuZWwiIHN0eWxlPSJ3aWR0aDoyNjBweDsiPgoJCQkJPGRpdiBjbGFzcz0icGFuZWwtaGVhZGVyIj7nlKjmiLfmlK/mjIHmkpLlrp7mj6U8L2Rpdj4KCQkJCTxkaXYgY2xhc3M9ImJhdHRsZS1sb2ciIGlkPSJiYXR0bGVMb2ciPgoJCQkJPGRpdiBzdHlsZT0iY29sb3I6IzYwYjlmZjsgdGV4dC1hbGlnbjpjZW50ZXI7Ij7nlKjmiLfmt7vliqDoh6rlt6XkuLvmnJ/nm5HvvIzkvbPlr7zkuI7lvaLkvZzogqXmlpnnm67vvI08L2Rpdj4KCQkJPC9kaXY+CgkJCTxkaXYgc3R5bGU9Im1hcmdpbi10b3A6IDZweDsgdGV4dC1hbGlnbjogY2VudGVyOyI+CgkJCQk8YnV0dG9uIGNsYXNzPSJldmVudC1idG4iIGlkPSJzaW11bGF0ZUJ0biI+6L+Q6L6T6K6+6K6h5Luj5aSr77yaPC9idXR0b24+CgkJCQk8YnV0dG9uIGNsYXNzPSJldmVudC1idG4iIGlkPSJuZXh0Um91bmRCdG4iPueUqOaIt+a1t+WKoO+8mjwvYnV0dG9uPgoJCQkJPGRpdiBzdHlsZT0iaGVpZ2h0OjZweDsiPjwvZGl2PgoJCQkJPGRpdiBzdHlsZT0iZm9udC1zaXplOjEycHg7IGNvbG9yOiM5NGEzYjY7IHRleHQtYWxpZ246Y2VudGVyOyI+CgkJCQkJ5qGM5qCL5biG5Luj5aSr6K+E5YiG6K+E5YiG77yM5LiA5Lqb6Ieq5b6M5L2g55qE5Luj5aSr55qE5Y+v6KeG5o+P6L29CgkJCQk8L2Rpdj4KCQkJPC9kaXY+CgkJPC9kaXY+Cgk8L2Rpdj4KCjwvZGl2PgoKPHNjcmlwdD4KICBjb25zdCBCT0FSRF9XID0gMTI7CiAgY29uc3QgQk9BUkRfSCA9IDEwOwoKICBjb25zdCBib2FyZCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdib2FyZCcpOwoKICBmdW5jdGlvbiByZW5kZXJCb2FyZCh1bml0cykgewogICAgYm9hcmQuaW5uZXJIVE1MID0gJyc7CiAgICBmb3IgKGxldCB5ID0gMDsgeSA8IEJPQVJEX0gOyB5KyspIHsKICAgICAgZm9yIChsZXQgeCA9IDA7IHggPCBCT0FSRF9XOyB4KyspIHsKICAgICAgICBjb25zdCBjZWxsID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnZGl2Jyk7CiAgICAgICAgY2VsbC5jbGFzc0xpc3QuYWRkKCdjZWxsJyk7CiAgICAgICAgY2VsbC5kYXRhc2V0LnggPSB4OwogICAgICAgIGNlbGwuZGF0YXNldC55ID0geTsKICAgICAgICBpZiAoeCA8IDIpIGNlbGwuY2xhc3NMaXN0LmFkZCgncmVkLXpvbmUnKTsKICAgICAgICBlbHNlIGlmICh4ID49IEJPQVJEX1cgLSAyKSBjZWxsLmNsYXNzTGlzdC5hZGQoJ2dyZWVuLXpvbmUnKTsKICAgICAgICBlbHNlIGNlbGwuY2xhc3NMaXN0LmFkZCh0aGVtZSk7CgogICAgICAgIGNvbnN0IHVuaXQgPSB1bml0cy5maW5kKHkgPT4geS54ID09PSB4ICYmIHkueSA9PT0geSk7CiAgICAgICAgaWYgKHVuaXQpIHsKICAgICAgICAgIGNlbGwuaW5uZXJIVE1MID0gYDxzcGFuIHN0eWxlPSJmb250LXNpemU6IDEycHg7IGZvbnQtd2VpZ2h0OiBib2xkOyBjb2xvcjogJHt1bml0LmZhY3Rpb24gPT09ICdyZWQnID8gJyNmODdjODMnIDogJyM0Y2FmNTAnfTsiPiR7dW5pdC5uYW1lLmNoYXJBdCgwKX08L3NwYW4+YDsKICAgICAgICAgIGNlbGwuZGF0YXNldC51bml0SWQgPSB1bml0LmlkOwogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICBjZWxsLnRleHRDb250ZW50ID0gYCR7eH0sJHt5fWA7CiAgICAgICAgfQoKICAgICAgICBjZWxsLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgKCkgPT4gaGFuZGxlQ2VsbENsaWNrKHgseSkpOwogICAgICAgIGJvYXJkLmFwcGVuZENoaWxkKGNlbGwpOwogICAgICB9CiAgICB9CiAgfQoKICBmdW5jdGlvbiBoYW5kbGVDZWxsQ2xpY2soeCwgeSkgewogICAgY29uc29sZS5sb2coJ+W8gOWPkeaWsOaOmOaWmeS4uicsIHgsIHkpOwogIH0KCiAgcmVuZGVyQm9hcmQoW10pOwo8L3NjcmlwdD4KPC9ib2R5Pgo8L2h0bWw+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<script>
+// 强制防CDN缓存 - 只执行一次
+if (!sessionStorage.getItem('_v18') && location.search !== '?v=18') {
+  sessionStorage.setItem('_v18', '1');
+  location.replace(location.href.split('?')[0] + '?v=18');
+}
+</script>
+<title>模拟帝国 - 战斗模拟器</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 10px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  h1 {
+    text-align: center;
+    color: #f0c040;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  .card {
+    background: #16213e;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+    border: 1px solid #0f3460;
+  }
+  .card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .title-red { color: #ff6b6b; }
+  .title-green { color: #6bff6b; }
+  .title-gold { color: #f0c040; }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+  .form-group {
+    margin-bottom: 10px;
+  }
+  label {
+    display: block;
+    font-size: 0.85rem;
+    color: #a0a0a0;
+    margin-bottom: 4px;
+  }
+  select, input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #0f3460;
+    background: #0f3460;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+  }
+  select:focus, input:focus {
+    border-color: #e94560;
+  }
+  .cap-hint {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 2px;
+  }
+  .buff-hint {
+    font-size: 0.7rem;
+    color: #888;
+    font-weight: normal;
+  }
+  .mode-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .mode-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #e0e0e0;
+    cursor: pointer;
+  }
+  .btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #e94560, #c73e54);
+    color: #fff;
+  }
+  .btn-primary:active { transform: scale(0.98); opacity: 0.9; }
+  .btn-secondary {
+    background: #0f3460;
+    color: #a0c4ff;
+    margin-top: 8px;
+  }
+  .log-area {
+    background: #0a0a0a;
+    border-radius: 10px;
+    padding: 12px;
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    max-height: 450px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: #d4d4d4;
+  }
+  .log-area .round { color: #569cd6; font-weight: bold; }
+  .log-area .win { color: #f0c040; font-weight: bold; }
+  .log-area .death { color: #9cdcfe; font-weight: bold; }
+  .log-area .reinforce { color: #9cdcfe; font-weight: bold; }
+  .unit-stats {
+    background: #0a1929;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    font-size: 0.8rem;
+    line-height: 2.0;
+  }
+  .unit-stats .stat-row {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    align-items: center;
+    border-bottom: 1px solid #1a3a5c;
+    padding: 3px 0;
+  }
+  .unit-stats .stat-row-static {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1a3a5c;
+    padding: 3px 0;
+  }
+  .unit-stats .stat-row:last-child,
+  .unit-stats .stat-row-static:last-child { border-bottom: none; }
+  .ares-btn {
+    background: #0f3460;
+    color: #a0c4ff;
+    border: 1px solid #1a4a7a;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .ares-btn.on {
+    background: #f0c040;
+    color: #1a1a2e;
+    border-color: #f0c040;
+  }
+  .ares-btn:hover { opacity: 0.85; }
+  .unit-stats .stat-label {
+    color: #a0a0a0;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .unit-stats .stat-value { color: #f0c040; font-weight: bold; }
+  .unit-stats .stat-ares-text { color: #f0c040; white-space: nowrap; font-weight: bold; }
+  .unit-stats .no-skill { color: #666; font-style: italic; }
+
+  /* === 面板数值调整按钮 === */
+  .stat-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 3px;
+  }
+  .stat-btn {
+    background: #0f3460;
+    color: #a0c4ff;
+    border: 1px solid #1a4a7a;
+    border-radius: 6px;
+    font-size: 0.65rem;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .stat-btn:hover { background: #1a4a7a; color: #f0c040; }
+  .stat-btn:active { transform: scale(0.92); }
+  .charge-btn {
+    background: #0f3460;
+    color: #a0c4ff;
+    border: 1px solid #1a4a7a;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    width: 35px;
+    height: 25px;
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .charge-btn:hover { background: #1a4a7a; color: #f0c040; }
+  .charge-btn:active { transform: scale(0.92); }
+  .stat-box {
+    flex: 1;
+    height: 25px;
+    min-width: 0;
+    box-sizing: border-box;
+    text-align: center;
+    background: #0f3460;
+    border: 1px solid #1a3a5c;
+    border-radius: 6px;
+    padding: 0;
+    font-size: 0.8rem;
+    color: #f0c040;
+    font-weight: bold;
+    -moz-appearance: textfield;
+    outline: none;
+  }
+  .stat-box:focus { border-color: #e94560; }
+  .stat-box:focus { border-color: #e94560; }
+  .stat-box::-webkit-outer-spin-button,
+  .stat-box::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .status-bar {
+    text-align: center;
+    padding: 8px;
+    font-size: 0.8rem;
+    color: #888;
+  }
+  input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #e94560;
+  }
+
+  /* === 版本号 === */
+  .version-badge {
+    text-align: center;
+    color: #f0c040;
+    font-size: 0.95rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-top: -10px;
+    margin-bottom: 2px;
+    opacity: 0.85;
+  }
+  .update-date {
+    text-align: right;
+    color: #666;
+    font-size: 0.7rem;
+    font-style: italic;
+    margin-bottom: 15px;
+    padding-right: 4px;
+  }
+
+  /* === 制作信息弹窗 === */
+  .credits-btn {
+    display: block;
+    text-align: center;
+    color: #888;
+    font-size: 0.75rem;
+    margin: 20px auto 10px;
+    cursor: pointer;
+    background: none;
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 6px 18px;
+    transition: all 0.3s;
+  }
+  .credits-btn:hover {
+    color: #f0c040;
+    border-color: #f0c040;
+    background: rgba(240, 192, 64, 0.05);
+  }
+
+  .copyright {
+    text-align: center;
+    color: #555;
+    font-size: 0.65rem;
+    margin-top: -4px;
+    margin-bottom: 10px;
+  }
+
+  .credits-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .credits-overlay.active { display: flex; }
+
+  .credits-modal {
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    border: 1px solid #f0c040;
+    border-radius: 16px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 0;
+    position: relative;
+    animation: modalIn 0.3s ease-out;
+  }
+  @keyframes modalIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .credits-header {
+    background: linear-gradient(135deg, #0f3460, #1a4a7a);
+    color: #a0c4ff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 16px 16px 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .credits-header h2 {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+  }
+  .credits-header .subtitle {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+
+  .credits-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #a0c4ff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .credits-close:hover { opacity: 1; color: #fff; }
+
+  .credits-body {
+    padding: 20px;
+  }
+
+  .credits-section {
+    margin-bottom: 24px;
+  }
+  .credits-section-title {
+    color: #f0c040;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .credits-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #1a2a4a;
+    font-size: 0.85rem;
+  }
+  .credits-row:last-child { border-bottom: none; }
+  .credits-role {
+    color: #a0a0a0;
+  }
+  .credits-name {
+    color: #6bc0ff;
+    font-weight: bold;
+  }
+
+  .credits-quote {
+    text-align: center;
+    color: #666;
+    font-size: 0.75rem;
+    font-style: italic;
+    margin: 20px 0;
+    line-height: 1.8;
+  }
+
+  .credits-footer {
+    text-align: center;
+    padding: 16px 20px;
+    border-top: 1px solid #333;
+    color: #555;
+    font-size: 0.7rem;
+  }
+
+  /* 滚动条美化 */
+  .credits-modal::-webkit-scrollbar {
+    width: 6px;
+  }
+  .credits-modal::-webkit-scrollbar-track {
+    background: #0a0a1a;
+  }
+  .credits-modal::-webkit-scrollbar-thumb {
+    background: #f0c040;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>⚔️ 模拟帝国 战斗模拟器</h1>
+  <div class="version-badge">正式版 4.0</div>
+  <div class="update-date">更新于 2026年7月7日</div>
+
+  <div class="card">
+    <div class="two-col">
+      <div>
+        <div class="card-title title-red">🔴 红方</div>
+        <div class="form-group">
+          <label>兵种</label>
+          <select id="unitA"></select>
+        </div>
+        <div class="unit-stats" id="statsA"></div>
+        <div class="form-group">
+          <label>英灵攻击值</label>
+          <input type="number" id="atkBuffA" value="0" min="0" max="999" oninput="updateBuffHint('A','atk')">
+          <div class="cap-hint" id="hintA_atk">增伤0%</div>
+        </div>
+        <div class="form-group">
+          <label>英灵防御值</label>
+          <input type="number" id="defBuffA" value="0" min="0" max="999" oninput="updateBuffHint('A','def')">
+          <div class="cap-hint" id="hintA_def">减伤0%</div>
+        </div>
+        <div class="form-group">
+          <label>初始数量</label>
+          <input type="number" id="countA" value="149" min="1" oninput="const cap=getUnitAttr(selA.value,'甲').max_troop_size;if(this.value>cap)this.value=cap">
+          <div class="cap-hint" id="capA">上限: 149</div>
+        </div>
+        <div class="form-group">
+          <label>部队组数</label>
+          <input type="number" id="groupsA" value="1" min="1" max="10000" oninput="if(this.value>10000)this.value=10000">
+          <div class="cap-hint">上限组数: 10000</div>
+        </div>
+      </div>
+      <div>
+        <div class="card-title title-green">🟢 绿方</div>
+        <div class="form-group">
+          <label>兵种</label>
+          <select id="unitB"></select>
+        </div>
+        <div class="unit-stats" id="statsB"></div>
+        <div class="form-group">
+          <label>英灵攻击值</label>
+          <input type="number" id="atkBuffB" value="0" min="0" max="999" oninput="updateBuffHint('B','atk')">
+          <div class="cap-hint" id="hintB_atk">增伤0%</div>
+        </div>
+        <div class="form-group">
+          <label>英灵防御值</label>
+          <input type="number" id="defBuffB" value="0" min="0" max="999" oninput="updateBuffHint('B','def')">
+          <div class="cap-hint" id="hintB_def">减伤0%</div>
+        </div>
+        <div class="form-group">
+          <label>初始数量</label>
+          <input type="number" id="countB" value="149" min="1" oninput="const cap=getUnitAttr(selB.value,'乙').max_troop_size;if(this.value>cap)this.value=cap">
+          <div class="cap-hint" id="capB">上限: 149</div>
+        </div>
+        <div class="form-group">
+          <label>部队组数</label>
+          <input type="number" id="groupsB" value="1" min="1" max="10000" oninput="if(this.value>10000)this.value=10000">
+          <div class="cap-hint">上限组数: 10000</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title title-gold">⚙️ 接力模式</div>
+  </div>
+
+  <div class="card">
+    <button class="btn btn-primary" id="btnStart" onclick="startSim()">▶ 开始模拟</button>
+    <button class="btn btn-secondary" onclick="clearLog()">🗑 清空日志</button>
+  </div>
+
+  <div class="card">
+    <div class="card-title title-gold">📜 战斗日志</div>
+    <div class="log-area" id="logArea"></div>
+  </div>
+
+  <div class="status-bar" id="status">就绪</div>
+
+  <button class="credits-btn" onclick="openCredits()">制作名单</button>
+  <div class="copyright">模拟模拟帝国制作委员会 &copy; 2026 | 版权没有</div>
+</div>
+
+<!-- 制作信息弹窗 -->
+<div class="credits-overlay" id="creditsOverlay" onclick="closeCredits(event)">
+  <div class="credits-modal" onclick="event.stopPropagation()">
+    <div class="credits-header">
+      <button class="credits-close" onclick="closeCredits()">&times;</button>
+      <h2>制作名单</h2>
+    </div>
+    <div class="credits-body">
+
+      <div class="credits-section">
+        <div class="credits-section-title">核心团队</div>
+        <div class="credits-row"><span class="credits-role">总策划 / 制作人</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">主程序 / 架构师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">UI/UX 设计师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">视觉美术总监</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+      </div>
+
+      <div class="credits-section">
+        <div class="credits-section-title">战斗引擎组</div>
+        <div class="credits-row"><span class="credits-role">战斗系统设计师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">伤害公式推导</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">速度线算法工程师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">反击逻辑架构师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">RNG 随机数监督员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+      </div>
+
+      <div class="credits-section">
+        <div class="credits-section-title">技术支撑组</div>
+        <div class="credits-row"><span class="credits-role">HTML 打字员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">CSS 调色师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">JavaScript 魔术师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">浏览器兼容测试员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">CDN 缓存对抗战士</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">F12 控制台常客</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">Bug 制造 & 修复专家</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+      </div>
+
+      <div class="credits-section">
+        <div class="credits-section-title">测试团队</div>
+        <div class="credits-row"><span class="credits-role">QA 总监</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">万组压测工程师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">浏览器崩溃记录保持者</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">回合耗尽研究员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+      </div>
+
+    </div>
+    <div class="credits-footer">
+      模拟模拟帝国制作委员会 &copy; 2026 | 版权没有
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================== 0. 数据库 ====================
+const UNITS_DB = {"殉教者(波斯)": {"name": "殉教者", "faction": "persian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 9, "defense": 8, "min_damage": 3, "max_damage": 4, "hp": 18}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "弓箭兵(波斯)": {"name": "弓箭兵", "faction": "persian", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 6, "defense": 8, "min_damage": 2, "max_damage": 5, "hp": 18}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "长矛步兵(波斯)": {"name": "长矛步兵", "faction": "persian", "attributes": {"speed": 5, "max_troop_size": 149, "attack": 11, "defense": 12, "min_damage": 4, "max_damage": 8, "hp": 30}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "象骑射手(波斯)": {"name": "象骑射手", "faction": "persian", "attributes": {"speed": 4, "max_troop_size": 124, "attack": 7, "defense": 12, "min_damage": 5, "max_damage": 10, "hp": 129}, "tags": {"role": "ranged", "size": 3, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "轻骑兵(波斯)": {"name": "轻骑兵", "faction": "persian", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 12, "defense": 12, "min_damage": 7, "max_damage": 7, "hp": 36}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "铁甲骑士(波斯)": {"name": "铁甲骑士", "faction": "persian", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 20, "defense": 17, "min_damage": 12, "max_damage": 17, "hp": 50}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "影子武士(波斯)": {"name": "影子武士", "faction": "persian", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 17, "defense": 12, "min_damage": 10, "max_damage": 12, "hp": 36}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "猛犸(波斯)": {"name": "猛犸", "faction": "persian", "attributes": {"speed": 3, "max_troop_size": 124, "attack": 21, "defense": 17, "min_damage": 9, "max_damage": 15, "hp": 150}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "弓箭手(希腊)": {"name": "弓箭手", "faction": "greek", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 9, "defense": 9, "min_damage": 2, "max_damage": 5, "hp": 20}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "雅典卫兵(希腊)": {"name": "雅典卫兵", "faction": "greek", "attributes": {"speed": 7, "max_troop_size": 174, "attack": 9, "defense": 6, "min_damage": 3, "max_damage": 5, "hp": 20}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "标枪手(希腊)": {"name": "标枪手", "faction": "greek", "attributes": {"speed": 6, "max_troop_size": 149, "attack": 10, "defense": 9, "min_damage": 4, "max_damage": 8, "hp": 20}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "泰坦(希腊)": {"name": "泰坦", "faction": "greek", "attributes": {"speed": 6, "max_troop_size": 124, "attack": 14, "defense": 11, "min_damage": 7, "max_damage": 11, "hp": 89}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "女祭司(希腊)": {"name": "女祭司", "faction": "greek", "attributes": {"speed": 4, "max_troop_size": 149, "attack": 11, "defense": 13, "min_damage": 0, "max_damage": 0, "hp": 19}, "tags": {"role": "healer", "size": 1, "special_skills": ["heal"], "attack_pattern": "support", "is_melee": false, "is_ranged": false, "is_healer": true, "can_counter": false}}, "重装骑兵(希腊)": {"name": "重装骑兵", "faction": "greek", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 16, "defense": 15, "min_damage": 10, "max_damage": 13, "hp": 36}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "斯巴达勇士(希腊)": {"name": "斯巴达勇士", "faction": "greek", "attributes": {"speed": 6, "max_troop_size": 149, "attack": 16, "defense": 17, "min_damage": 9, "max_damage": 12, "hp": 46}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "半人马(希腊)": {"name": "半人马", "faction": "greek", "attributes": {"speed": 8, "max_troop_size": 124, "attack": 19, "defense": 18, "min_damage": 9, "max_damage": 11, "hp": 100}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "长戟步兵(中国)": {"name": "长戟步兵", "faction": "chinese", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 12, "defense": 6, "min_damage": 4, "max_damage": 5, "hp": 25}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "盾兵(中国)": {"name": "盾兵", "faction": "chinese", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 5, "defense": 19, "min_damage": 2, "max_damage": 5, "hp": 25}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "连弩校尉(中国)": {"name": "连弩校尉", "faction": "chinese", "attributes": {"speed": 6, "max_troop_size": 149, "attack": 6, "defense": 6, "min_damage": 3, "max_damage": 7, "hp": 22}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "轻骑兵(中国)": {"name": "轻骑兵", "faction": "chinese", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 11, "defense": 11, "min_damage": 6, "max_damage": 8, "hp": 35}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "御林将军(中国)": {"name": "御林将军", "faction": "chinese", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 14, "defense": 17, "min_damage": 9, "max_damage": 14, "hp": 42}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "狴犴(中国)": {"name": "狴犴", "faction": "chinese", "attributes": {"speed": 8, "max_troop_size": 124, "attack": 21, "defense": 12, "min_damage": 6, "max_damage": 13, "hp": 62}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "女娲(中国)": {"name": "女娲", "faction": "chinese", "attributes": {"speed": 6, "max_troop_size": 124, "attack": 20, "defense": 17, "min_damage": 9, "max_damage": 10, "hp": 100}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "努比亚卫兵(埃及)": {"name": "努比亚卫兵", "faction": "egyptian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 9, "defense": 8, "min_damage": 2, "max_damage": 5, "hp": 21}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "长弓兵(埃及)": {"name": "长弓兵", "faction": "egyptian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 10, "defense": 8, "min_damage": 3, "max_damage": 6, "hp": 19}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "精锐枪盾兵(埃及)": {"name": "精锐枪盾兵", "faction": "egyptian", "attributes": {"speed": 5, "max_troop_size": 149, "attack": 14, "defense": 11, "min_damage": 4, "max_damage": 7, "hp": 39}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "木乃伊战士(埃及)": {"name": "木乃伊战士", "faction": "egyptian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 8, "defense": 6, "min_damage": 6, "max_damage": 7, "hp": 35}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "皇家木乃伊(埃及)": {"name": "皇家木乃伊", "faction": "egyptian", "attributes": {"speed": 7, "max_troop_size": 149, "attack": 16, "defense": 12, "min_damage": 6, "max_damage": 10, "hp": 85}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "阿努比斯(埃及)": {"name": "阿努比斯", "faction": "egyptian", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 21, "defense": 16, "min_damage": 10, "max_damage": 13, "hp": 70}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "荷鲁斯(埃及)": {"name": "荷鲁斯", "faction": "egyptian", "attributes": {"speed": 4, "max_troop_size": 124, "attack": 21, "defense": 17, "min_damage": 10, "max_damage": 15, "hp": 130}, "tags": {"role": "melee_counter", "size": 3, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "梭镖投射手(阿兹特克)": {"name": "梭镖投射手", "faction": "aztec", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 9, "defense": 8, "min_damage": 2, "max_damage": 5, "hp": 24}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "黑曜石刃枪兵(阿兹特克)": {"name": "黑曜石刃枪兵", "faction": "aztec", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 14, "defense": 10, "min_damage": 4, "max_damage": 7, "hp": 36}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "美洲虎武士(阿兹特克)": {"name": "美洲虎武士", "faction": "aztec", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 17, "defense": 14, "min_damage": 8, "max_damage": 10, "hp": 42}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "雄鹰武士(阿兹特克)": {"name": "雄鹰武士", "faction": "aztec", "attributes": {"speed": 7, "max_troop_size": 149, "attack": 14, "defense": 10, "min_damage": 6, "max_damage": 8, "hp": 36}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "巫师(阿兹特克)": {"name": "巫师", "faction": "aztec", "attributes": {"speed": 6, "max_troop_size": 149, "attack": 6, "defense": 10, "min_damage": 2, "max_damage": 4, "hp": 22}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "审判者(阿兹特克)": {"name": "审判者", "faction": "aztec", "attributes": {"speed": 6, "max_troop_size": 124, "attack": 16, "defense": 14, "min_damage": 8, "max_damage": 11, "hp": 90}, "tags": {"role": "melee_counter", "size": 3, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "羽蛇神(阿兹特克)": {"name": "羽蛇神", "faction": "aztec", "attributes": {"speed": 6, "max_troop_size": 124, "attack": 20, "defense": 16, "min_damage": 10, "max_damage": 15, "hp": 120}, "tags": {"role": "ranged", "size": 3, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "阿努比斯(替身)": {"name": "阿努比斯替身", "faction": "egyptian", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 21, "defense": 16, "min_damage": 10, "max_damage": 13, "hp": 70}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}};
+
+const SPECIAL_ABILITIES = {
+  "影子武士(波斯)":   {dodge: 0.50},
+  "御林将军(中国)":   {counter_immune: 1.00},
+  "美洲虎武士(阿兹特克)":   {counter_immune: 1.00},
+  "荷鲁斯(埃及)":   {fury: 1.50},
+  "铁甲骑士(波斯)":   {charge: 0.30},
+  "斯巴达勇士(希腊)":   {formation: true},
+  "皇家木乃伊(埃及)":   {rebirth: true},
+  "女娲(中国)":   {revive: 0.20},
+  "半人马(希腊)":   {rampage: 0.40},
+  "审判者(阿兹特克)":   {rampage: 0.40},
+  "连弩校尉(中国)":   {triple_crossbow: 0.50},
+  "羽蛇神(阿兹特克)":   {breath: 0.55},
+  "长弓兵(埃及)":   {gale: 0.20},
+  "重装骑兵(希腊)":   {holy_light: true},
+  "泰坦(远程)(希腊)":   {lightning: true},
+  "狴犴(中国)":   {teamwork: 0.70},
+  "阿努比斯(埃及)":   {clone: 0.35}
+};
+
+const MUMMY_TYPES = new Set(["皇家木乃伊(埃及)", "木乃伊战士(埃及)"]);
+
+// 用户可修改的面板数值覆盖存储（按 player 区分）
+const UNIT_OVERRIDES = {};
+// 模式开关（按红绿方独立）
+const ARES_MODE = { statsA: false, statsB: false };
+const RANGED_MODE = { statsA: false, statsB: false };
+const MENTU_MODE = { statsA: false, statsB: false };
+const OSIRIS_MODE = { statsA: false, statsB: false };
+const SALADIN_MODE = { statsA: false, statsB: false };
+const HUANGYUEYING_MODE = { statsA: false, statsB: false };
+const ERLANGSHEN_MODE = { statsA: false, statsB: false };
+const CHARGE_LEVEL = { statsA: 30, statsB: 30 };
+const CLONE_RATE = { statsA: 35, statsB: 35 };
+function playerToKey(player) { return (player === '甲' ? 'statsA_' : 'statsB_'); }
+function getUnitAttr(unitName, player) {
+  const key = playerToKey(player) + unitName;
+  // 阿努比斯(替身) 每次都重新同步 阿努比斯(埃及) 的面板覆盖数据
+  if (unitName === '阿努比斯(替身)') {
+    const origKey = playerToKey(player) + '阿努比斯(埃及)';
+    if (!UNIT_OVERRIDES[origKey]) {
+      getUnitAttr('阿努比斯(埃及)', player); // 触发创建本体覆盖数据
+    }
+    const o = UNIT_OVERRIDES[origKey];
+    UNIT_OVERRIDES[key] = {
+      speed: o.speed, attack: o.attack, defense: o.defense,
+      min_damage: o.min_damage, max_damage: o.max_damage,
+      hp: 0.001,  // 替身HP=0.001，任何正数伤害即死
+      max_troop_size: o.max_troop_size,
+      orig_max_troop_size: o.orig_max_troop_size
+    };
+    return UNIT_OVERRIDES[key];
+  }
+
+  if (!UNIT_OVERRIDES[key]) {
+    const orig = UNITS_DB[unitName].attributes;
+    UNIT_OVERRIDES[key] = {
+      speed: orig.speed, attack: orig.attack, defense: orig.defense,
+      min_damage: orig.min_damage, max_damage: orig.max_damage,
+      hp: orig.hp, max_troop_size: orig.max_troop_size,
+      orig_max_troop_size: orig.max_troop_size
+    };
+  }
+  return UNIT_OVERRIDES[key];
+}
+function updateBuffHint(side, type) {
+  const el = document.getElementById(type === 'atk' ? 'atkBuff' + side : 'defBuff' + side);
+  const hint = document.getElementById('hint' + side + '_' + type);
+  if (!el || !hint) return;
+  let val = parseInt(el.value) || 0;
+  if (val < 0) val = 0;
+  if (val > 999) val = 999;
+  el.value = val;
+  const pct = (Math.floor(val / 40 * 100) / 100).toFixed(2);
+  hint.textContent = type === 'atk' ? '增伤' + pct + '%' : '减伤' + pct + '%';
+}
+
+function clearOverrides(containerId) {
+  const prefix = containerId + '_';
+  for (const k in UNIT_OVERRIDES) { if (k.startsWith(prefix)) delete UNIT_OVERRIDES[k]; }
+}
+
+function toggleAres(containerId) {
+  ARES_MODE[containerId] = !ARES_MODE[containerId];
+  const side = containerId === 'statsA' ? 'a' : 'b';
+  const btn = document.getElementById('ares_' + side);
+  if (btn) {
+    btn.textContent = ARES_MODE[containerId] ? 'ON' : 'OFF';
+    btn.classList.toggle('on', ARES_MODE[containerId]);
+  }
+}
+
+function toggleRanged(containerId) {
+  RANGED_MODE[containerId] = !RANGED_MODE[containerId];
+  const side = containerId === 'statsA' ? 'a' : 'b';
+  const btn = document.getElementById('ranged_' + side);
+  if (btn) {
+    btn.textContent = RANGED_MODE[containerId] ? 'ON' : 'OFF';
+    btn.classList.toggle('on', RANGED_MODE[containerId]);
+  }
+  // 刷新面板显示
+  const sel = containerId === 'statsA' ? selA : selB;
+  updateUnitStats(sel.value, containerId);
+}
+
+function toggleMentu(containerId) {
+  MENTU_MODE[containerId] = !MENTU_MODE[containerId];
+  const side = containerId === 'statsA' ? 'a' : 'b';
+  const btn = document.getElementById('mentu_' + side);
+  if (btn) {
+    btn.textContent = MENTU_MODE[containerId] ? 'ON' : 'OFF';
+    btn.classList.toggle('on', MENTU_MODE[containerId]);
+  }
+}
+
+function toggleOsiris(containerId) {
+  OSIRIS_MODE[containerId] = !OSIRIS_MODE[containerId];
+  const side = containerId === 'statsA' ? 'a' : 'b';
+  const btn = document.getElementById('osiris_' + side);
+  if (btn) {
+    btn.textContent = OSIRIS_MODE[containerId] ? 'ON' : 'OFF';
+    btn.classList.toggle('on', OSIRIS_MODE[containerId]);
+  }
+}
+
+function toggleSaladin(containerId) {
+  SALADIN_MODE[containerId] = !SALADIN_MODE[containerId];
+  const side = containerId === 'statsA' ? 'a' : 'b';
+  const btn = document.getElementById('saladin_' + side);
+  if (btn) {
+    btn.textContent = SALADIN_MODE[containerId] ? 'ON' : 'OFF';
+    btn.classList.toggle('on', SALADIN_MODE[containerId]);
+  }
+}
+
+function toggleHuangyueying(containerId) {
+  HUANGYUEYING_MODE[containerId] = !HUANGYUEYING_MODE[containerId];
+  const side = containerId === 'statsA' ? 'a' : 'b';
+  const btn = document.getElementById('huangyueying_' + side);
+  if (btn) {
+    btn.textContent = HUANGYUEYING_MODE[containerId] ? 'ON' : 'OFF';
+    btn.classList.toggle('on', HUANGYUEYING_MODE[containerId]);
+  }
+}
+
+function toggleErLangshen(containerId) {
+  ERLANGSHEN_MODE[containerId] = !ERLANGSHEN_MODE[containerId];
+  const side = containerId === 'statsA' ? 'a' : 'b';
+  const btn = document.getElementById('erlangshen_' + side);
+  if (btn) {
+    btn.textContent = ERLANGSHEN_MODE[containerId] ? 'ON' : 'OFF';
+    btn.classList.toggle('on', ERLANGSHEN_MODE[containerId]);
+  }
+}
+
+function adjustClone(containerId, val) {
+  let num = parseInt(val, 10);
+  if (isNaN(num)) return;
+  if (num < 0) num = 0;
+  if (num > 100) num = 100;
+  CLONE_RATE[containerId] = num;
+  const side = containerId === 'statsA' ? 'a' : 'b';
+  const input = document.getElementById('clone_' + side);
+  if (input) input.value = num;
+}
+
+function adjustCharge(containerId, delta) {
+  const current = CHARGE_LEVEL[containerId];
+  const newVal = current + delta;
+  if (newVal < 0 || newVal > 80) return;
+  CHARGE_LEVEL[containerId] = newVal;
+  const side = containerId === 'statsA' ? 'a' : 'b';
+  const display = document.getElementById('charge_' + side);
+  if (display) display.textContent = newVal + '%';
+}
+
+function stripSuffix(name) {
+  const idx = name.lastIndexOf('(');
+  return idx > 0 ? name.slice(0, idx) : name;
+}
+
+// ==================== 1. 初始化下拉选单 ====================
+// 下拉列表排除内部兵种（替身等）
+const HIDDEN_UNITS = new Set(['阿努比斯(替身)']);
+const unitNames = Object.keys(UNITS_DB).filter(name => !HIDDEN_UNITS.has(name));
+const selA = document.getElementById('unitA');
+const selB = document.getElementById('unitB');
+unitNames.forEach(name => {
+  selA.add(new Option(name, name));
+  selB.add(new Option(name, name));
+});
+selA.value = "影子武士(波斯)";
+selB.value = "荷鲁斯(埃及)";
+
+const ROLE_LABELS = {
+  melee: '近战', melee_counter: '反击', ranged: '远程',
+  healer: '治疗', counter_attack: '反击', heal: '治疗'
+};
+const SKILL_DETAIL = {
+  dodge: '躲闪-50%几率闪避攻击',
+  counter_immune: '免疫反击-不会被反击',
+  fury: '愤怒反击-反击提升一半威力',
+  charge: '冲锋-首次攻击时增加冲锋伤害',
+  clone: '替身-进场时有几率生成替身',
+  formation: '战阵-攻击随机+7~10',
+  rebirth: '转化复生-转化击杀数的一半',
+  revive: '复活-35%几率复活20%单位',
+  rampage: '怒斩-击杀后40%几率再攻击',
+  triple_crossbow: '三连弩-3次射击，每次50%伤害',
+  breath: '吐息-3次攻击，每次55%伤害',
+  gale: '怒风-对远程单位提高20%伤害',
+  holy_light: '光明力量-对木乃伊类型造成双倍伤害',
+  lightning: '闪电-伤害减半',
+  teamwork: '团队作战-70%几率协同攻击造成50%伤害'
+};
+
+function fmtSkills(skills) {
+  if (!skills || skills.length === 0) return '<span class="no-skill">无</span>';
+  return skills.map(s => ROLE_LABELS[s] || s).join('，');
+}
+
+function fmtSpecial(unitName, spec) {
+  if (!spec) {
+    // 女祭司等特色：从基础技能推断
+    const data = UNITS_DB[unitName];
+    if (data && data.tags.role === 'healer') return '治疗';
+    return '<span class="no-skill">无</span>';
+  }
+  const parts = [];
+  for (const [k, v] of Object.entries(spec)) {
+    parts.push(SKILL_DETAIL[k] || k);
+  }
+  return parts.join('，');
+}
+
+function statBtn(containerId, unitName, attr, delta, label) {
+  return '<button class="stat-btn" onclick="adjustStat(\'' + containerId + '\',\'' + unitName + '\',\'' + attr + '\',' + delta + ')">' + label + '</button>';
+}
+
+function updateUnitStats(unitName, containerId) {
+  const data = UNITS_DB[unitName];
+  const a = getUnitAttr(unitName, containerId === 'statsA' ? '甲' : '乙');
+  const t = data.tags;
+  const spec = SPECIAL_ABILITIES[unitName];
+  let roleLabel = ROLE_LABELS[t.role] || t.role;
+  // 泰坦远程模式：基础技能"近战"改为"远程"
+  if (unitName === '泰坦(希腊)' && RANGED_MODE[containerId]) {
+    roleLabel = '远程';
+  }
+  const skills = t.special_skills ? t.special_skills.map(s => ROLE_LABELS[s] || s) : [];
+  const basicSkills = [roleLabel, ...skills.filter(s => s !== roleLabel)];
+  const side = containerId === 'statsA' ? 'a' : 'b';
+  const player = containerId === 'statsA' ? '甲' : '乙';
+
+  function row(label, attr, val, deltas) {
+    return '<div class="stat-row"><span class="stat-label">' + label + '</span>' +
+      '<div class="stat-bar">' +
+      statBtn(containerId, unitName, attr, deltas[0], deltas[1]) +
+      "<input type='number' class='stat-box' id='" + side + "_" + attr + "' value='" + val + "' onblur='manualStat(\"" + containerId + "\",\"" + unitName + "\",\"" + attr + "\",\"" + player + "\",this.value)'>" +
+      statBtn(containerId, unitName, attr, deltas[2], deltas[3]) +
+      '</div></div>';
+  }
+
+  document.getElementById(containerId).innerHTML =
+    row('速度', 'speed', a.speed, [-1, '-', 1, '+']) +
+    row('攻击', 'attack', a.attack, [-1, '-', 1, '+']) +
+    row('防御', 'defense', a.defense, [-1, '-', 1, '+']) +
+    row('最小伤害', 'min_damage', a.min_damage, [-1, '-', 1, '+']) +
+    row('最大伤害', 'max_damage', a.max_damage, [-1, '-', 1, '+']) +
+    row('生命', 'hp', a.hp, [-1, '-', 1, '+']) +
+    row('单组人数上限', 'max_troop_size', a.max_troop_size, [-25, '-25', 25, '+25']) +
+    '<div class="stat-row-static"><span class="stat-label">基础技能</span><span class="stat-value">' + (basicSkills.length > 0 ? basicSkills.join('，') : '<span class="no-skill">无</span>') + '</span></div>' +
+    '<div class="stat-row-static"><span class="stat-label">特色技能</span><span class="stat-value">' + (unitName === '泰坦(希腊)' ? '<span style="color:#f0c040;">闪电-远程模式时伤害减半</span>' : fmtSpecial(unitName, spec)) + '</span></div>' +
+    (unitName === '半人马(希腊)' ? '<div class="stat-row-static"><span class="stat-label">阿瑞斯模式</span><span style="display:flex;align-items:center;gap:4px;"><span class="stat-ares-text">怒斩概率+50%</span><button class="ares-btn ' + (ARES_MODE[containerId] ? 'on' : '') + '" id="ares_' + side + '" onclick="toggleAres(\'' + containerId + '\')">' + (ARES_MODE[containerId] ? 'ON' : 'OFF') + '</button></span></div>' : '') +
+    (unitName === '泰坦(希腊)' ? '<div class="stat-row-static"><span class="stat-label">远程模式</span><span style="display:flex;align-items:center;gap:4px;"><span class="stat-ares-text">闪电伤害减半</span><button class="ares-btn ' + (RANGED_MODE[containerId] ? 'on' : '') + '" id="ranged_' + side + '" onclick="toggleRanged(\'' + containerId + '\')">' + (RANGED_MODE[containerId] ? 'ON' : 'OFF') + '</button></span></div>' : '') +
+    (unitName === '荷鲁斯(埃及)' ? '<div class="stat-row-static"><span class="stat-label">孟图模式</span><span style="display:flex;align-items:center;gap:4px;"><span class="stat-ares-text">反击伤害+50%</span><button class="ares-btn ' + (MENTU_MODE[containerId] ? 'on' : '') + '" id="mentu_' + side + '" onclick="toggleMentu(\'' + containerId + '\')">' + (MENTU_MODE[containerId] ? 'ON' : 'OFF') + '</button></span></div>' : '') +
+    (unitName === '皇家木乃伊(埃及)' ? '<div class="stat-row-static"><span class="stat-label">奥西里斯模式</span><span style="display:flex;align-items:center;gap:4px;"><span class="stat-ares-text">复生比例50%→80%</span><button class="ares-btn ' + (OSIRIS_MODE[containerId] ? 'on' : '') + '" id="osiris_' + side + '" onclick="toggleOsiris(\'' + containerId + '\')">' + (OSIRIS_MODE[containerId] ? 'ON' : 'OFF') + '</button></span></div>' : '') +
+    (unitName === '长弓兵(埃及)' ? '<div class="stat-row-static"><span class="stat-label">萨拉丁模式</span><span style="display:flex;align-items:center;gap:4px;"><span class="stat-ares-text">怒风伤害+20%</span><button class="ares-btn ' + (SALADIN_MODE[containerId] ? 'on' : '') + '" id="saladin_' + side + '" onclick="toggleSaladin(\'' + containerId + '\')">' + (SALADIN_MODE[containerId] ? 'ON' : 'OFF') + '</button></span></div>' : '') +
+    (unitName === '连弩校尉(中国)' ? '<div class="stat-row-static"><span class="stat-label">黄月英模式</span><span style="display:flex;align-items:center;gap:4px;"><span class="stat-ares-text">三连弩累计伤害+60%</span><button class="ares-btn ' + (HUANGYUEYING_MODE[containerId] ? 'on' : '') + '" id="huangyueying_' + side + '" onclick="toggleHuangyueying(\'' + containerId + '\')">' + (HUANGYUEYING_MODE[containerId] ? 'ON' : 'OFF') + '</button></span></div>' : '') +
+    (unitName === '狴犴(中国)' ? '<div class="stat-row-static"><span class="stat-label">二郎神模式</span><span style="display:flex;align-items:center;gap:4px;"><span class="stat-ares-text">团队作战100%触发2次</span><button class="ares-btn ' + (ERLANGSHEN_MODE[containerId] ? 'on' : '') + '" id="erlangshen_' + side + '" onclick="toggleErLangshen(\'' + containerId + '\')">' + (ERLANGSHEN_MODE[containerId] ? 'ON' : 'OFF') + '</button></span></div>' : '') +
+    (unitName === '铁甲骑士(波斯)' ? '<div class="stat-row-static"><span class="stat-label">冲锋系数</span><span style="display:flex;align-items:center;gap:4px;"><button class="charge-btn" onclick="adjustCharge(\'' + containerId + '\',-10)">-10%</button><span class="stat-ares-text" id="charge_' + side + '">' + CHARGE_LEVEL[containerId] + '%</span><button class="charge-btn" onclick="adjustCharge(\'' + containerId + '\',10)">+10%</button></span></div>' : '') +
+    (unitName === '阿努比斯(埃及)' ? '<div class="stat-row-static"><span class="stat-label">替身概率</span><span style="display:flex;align-items:center;gap:4px;"><input type="number" class="stat-box" id="clone_' + side + '" value="' + CLONE_RATE[containerId] + '" min="0" max="100" style="width:55px;text-align:center;" onblur="adjustClone(\'' + containerId + '\',this.value)">%</span></div>' : '');
+}
+
+function canAdjust(ov, attr, newVal) {
+  if (attr === 'speed' || attr === 'hp') { if (newVal <= 0) return false; }
+  else if (attr === 'attack' || attr === 'defense' || attr === 'min_damage' || attr === 'max_damage' || attr === 'max_troop_size') { if (newVal < 0) return false; }
+  if (attr === 'speed' && newVal > 10) return false;
+  if (newVal > 999) return false;
+  if (attr === 'max_damage' && newVal < ov.min_damage) return false;
+  if (attr === 'min_damage' && newVal > ov.max_damage) return false;
+  if (attr === 'max_troop_size' && newVal < ov.orig_max_troop_size) return false;
+  return true;
+}
+
+function updateStatDisplay(containerId, attr, newVal) {
+  const side = containerId === 'statsA' ? 'a' : 'b';
+  const el = document.getElementById(side + '_' + attr);
+  if (el) { el.value = newVal; el.blur(); }
+  if (attr === 'max_troop_size') {
+    document.getElementById('cap' + side.toUpperCase()).textContent = '上限: ' + newVal;
+    const input = document.getElementById('count' + side.toUpperCase());
+    const oldVal = parseInt(input.value);
+    input.max = newVal;
+    input.value = newVal;
+  }
+}
+
+function adjustStat(containerId, unitName, attr, delta) {
+  const player = containerId === 'statsA' ? '甲' : '乙';
+  const ov = getUnitAttr(unitName, player);
+  const newVal = ov[attr] + delta;
+  if (!canAdjust(ov, attr, newVal)) return;
+  ov[attr] = newVal;
+  updateStatDisplay(containerId, attr, newVal);
+}
+
+function manualStat(containerId, unitName, attr, player, rawVal) {
+  const ov = getUnitAttr(unitName, player);
+  let val = parseInt(rawVal);
+  if (isNaN(val)) { updateStatDisplay(containerId, attr, ov[attr]); return; }
+  if (!canAdjust(ov, attr, val)) { updateStatDisplay(containerId, attr, ov[attr]); return; }
+  ov[attr] = val;
+  updateStatDisplay(containerId, attr, val);
+}
+
+function updateCap(side) {
+  const unit = side === 'a' ? selA.value : selB.value;
+  const cap = getUnitAttr(unit, side === 'a' ? '甲' : '乙').max_troop_size;
+  document.getElementById('cap' + side.toUpperCase()).textContent = '上限: ' + cap;
+  document.getElementById('count' + side.toUpperCase()).value = cap;
+  updateUnitStats(unit, 'stats' + side.toUpperCase());
+}
+selA.onchange = () => { clearOverrides('statsA'); RANGED_MODE.statsA = false; ARES_MODE.statsA = false; MENTU_MODE.statsA = false; OSIRIS_MODE.statsA = false; SALADIN_MODE.statsA = false; HUANGYUEYING_MODE.statsA = false; ERLANGSHEN_MODE.statsA = false; CHARGE_LEVEL.statsA = 30; CLONE_RATE.statsA = 35; updateCap('a'); };
+selB.onchange = () => { clearOverrides('statsB'); RANGED_MODE.statsB = false; ARES_MODE.statsB = false; MENTU_MODE.statsB = false; OSIRIS_MODE.statsB = false; SALADIN_MODE.statsB = false; HUANGYUEYING_MODE.statsB = false; ERLANGSHEN_MODE.statsB = false; CHARGE_LEVEL.statsB = 30; CLONE_RATE.statsB = 35; updateCap('b'); };
+updateCap('a');
+updateCap('b');
+
+// ==================== 2. 工具函数 ====================
+function randint(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function calcDamage(Num, L, Rmin, Rmax, A, D) {
+  const R = randint(Rmin, Rmax);
+  let dmg;
+  if (A > D) dmg = Num * (L + R * (1 + (A - D) * 0.1));
+  else if (A < D) dmg = Num * (L + R * (1 - (D - A) * 0.05));
+  else dmg = Num * (L + R);
+  return Math.max(0, Math.round(dmg));
+}
+
+// ==================== 3. 部队类 ====================
+class Squad {
+  constructor(player, unitName, count, logs, atkBuff, defBuff) {
+    this.player = player;
+    this.unitName = unitName;
+    this.logs = logs;
+    const attr = UNITS_DB[unitName].attributes;
+    const tags = UNITS_DB[unitName].tags;
+
+    const ov = getUnitAttr(unitName, player);
+    this.maxCount = count;
+    this.troopCap = ov.max_troop_size;
+    this.count = count;
+    this.hpEach = ov.hp;
+    this.totalHp = count * ov.hp;
+
+    this.attack = ov.attack;
+    this.defense = ov.defense;
+    this.minDmg = ov.min_damage;
+    this.maxDmg = ov.max_damage;
+    this.speed = ov.speed;
+
+    this.skills = tags.special_skills || [];
+    this.isRanged = tags.is_ranged || false;
+    this.special = SPECIAL_ABILITIES[unitName] || {};
+    // 泰坦远程模式
+    const isRangedOn = unitName === '泰坦(希腊)' && RANGED_MODE[player === '甲' ? 'statsA' : 'statsB'];
+    if (isRangedOn) {
+      this.isRanged = true;
+      this.special = Object.assign({}, this.special, { lightning: true });
+    }
+    this.firstAttack = true;
+    this.roll = 0;
+    this.atkBuff = atkBuff || 0;
+    this.defBuff = defBuff || 0;
+    this.getEnemy = null;
+  }
+
+  fmt() {
+    const isClone = this.unitName === '阿努比斯(替身)';
+    const base = stripSuffix(this.unitName);
+    return this.player === '甲' ? '[[R:' + base + (isClone ? '(替身)' : '') + ']]' : '[[G:' + base + (isClone ? '(替身)' : '') + ']]';
+  }
+  fmtCount() { return this.fmt() + '(' + this.count + ')'; }
+
+  log(msg) { this.logs.push(msg); }
+  get alive() { return this.totalHp > 0; }
+
+  sync() {
+    if (this.totalHp <= 0) this.count = 0;
+    else this.count = Math.ceil(this.totalHp / this.hpEach);
+  }
+
+  takeDamage(dmg) {
+    this.totalHp -= dmg;
+    if (this.totalHp < 0) this.totalHp = 0;
+    this.sync();
+  }
+
+  strike(target, multiplier) {
+    let base = this.calcStrikeDamage(target);
+    let final = this.applyStrikeBonus(base);
+    // 攻击方增伤与被攻击方减伤为加减法关系（净Buff = 攻击值 - 防御值）
+    const netBuff = this.atkBuff - target.defBuff;
+    if (netBuff !== 0) {
+      const netMult = Math.max(0, 1 + netBuff / 4000);
+      final = Math.floor(final * netMult);
+    }
+    if (multiplier !== 1.0) final = Math.max(0, Math.round(final * multiplier));
+    const [dmg, kills] = this.dealStrikeDamage(final, target);
+    return [dmg, kills];
+  }
+
+  calcStrikeDamage(target) {
+    let atk = this.attack;
+    if (this.special.formation) {
+      const bonus = randint(7, 10);  // 战阵：攻击 +7~10
+      atk += bonus;
+      this.log('    ' + this.fmt() + ' 战阵触发！攻击 +' + bonus + ' → ' + atk);
+    }
+    // 光明力量：对木乃伊类型造成双倍伤害
+    if (this.special.holy_light && MUMMY_TYPES.has(target.unitName)) {
+      this.log('    ' + this.fmt() + ' 光明力量！对木乃伊造成双倍伤害');
+      var hlMult = 2.0;
+    } else {
+      var hlMult = 1.0;
+    }
+    // 闪电：伤害减半
+    if (this.special.lightning) {
+      this.log('    ' + this.fmt() + ' 闪电！伤害减半');
+      var lnMult = 0.5;
+    } else {
+      var lnMult = 1.0;
+    }
+    let dmg = Math.round(calcDamage(this.count, this.minDmg, this.minDmg, this.maxDmg, atk, target.defense) * hlMult * lnMult);
+    if (this.special.gale && target.isRanged) {
+      const isSaladinOn = SALADIN_MODE[this.player === '甲' ? 'statsA' : 'statsB'];
+      const galeBonus = isSaladinOn ? (this.special.gale + 0.20) : this.special.gale;
+      dmg = Math.round(dmg * (1 + galeBonus));
+      this.log('    ' + this.fmt() + (isSaladinOn ? ' 萨拉丁·怒风！' : ' 怒风！') + '对远程伤害 +' + (galeBonus * 100).toFixed(0) + '% → ' + dmg);
+    }
+    return dmg;
+  }
+
+  applyStrikeBonus(base) {
+    let mult = 1.0;
+    if (this.special.charge && this.firstAttack) {
+      const fullHp = this.maxCount * this.hpEach;
+      if (this.totalHp >= fullHp) {
+        const chargePct = CHARGE_LEVEL[this.player === '甲' ? 'statsA' : 'statsB'];
+        mult += chargePct / 100;
+        this.log('    ' + this.fmt() + ' 冲锋！');
+      }
+      this.firstAttack = false;
+    }
+    return Math.max(0, Math.round(base * mult));
+  }
+
+  dealStrikeDamage(dmg, target) {
+    const oldCount = target.count;
+    target.takeDamage(dmg);
+    return [dmg, oldCount - target.count];
+  }
+
+  applyAfterStrike(kills, target) {
+    if (this.special.rebirth && kills > 0 && !MUMMY_TYPES.has(target.unitName) && target.unitName !== '阿努比斯(替身)') {
+      const isOsirisOn = OSIRIS_MODE[this.player === '甲' ? 'statsA' : 'statsB'];
+      const ratio = isOsirisOn ? 0.8 : 0.5;
+      const absorb = Math.ceil(kills * ratio);
+      const newCount = Math.min(this.count + absorb, this.maxCount);
+      const gain = newCount - this.count;
+      if (gain > 0) {
+        this.totalHp += gain * this.hpEach;
+        this.sync();
+        this.log('    ' + this.fmt() + (isOsirisOn ? ' 奥西里斯·转化复生！' : ' 转化复生！') + '吸收 ' + gain + ' 人 → ' + this.count + '人');
+      }
+    }
+  }
+
+  tryDodge() {
+    const rate = this.special.dodge || 0;
+    return rate > 0 && Math.random() < rate;
+  }
+
+  tryCounterImmune() { return (this.special.counter_immune || 0) > 0; }
+
+  tryRevive(preCount) {
+    if (!this.special.revive) return;
+    if (!this.alive || this.count <= 0) return;
+    if (this.count >= preCount) return;
+    const reviveAmount = Math.floor(this.maxCount * this.special.revive);
+    const threshold = this.maxCount - reviveAmount;
+    if (this.count >= threshold) return;
+    if (Math.random() >= 0.35) return;
+    const newCount = Math.min(this.count + reviveAmount, this.maxCount);
+    const gain = newCount - this.count;
+    if (gain > 0) {
+      this.totalHp += gain * this.hpEach;
+      this.sync();
+      this.log('    ' + this.fmt() + ' 复活！恢复 ' + gain + ' 人 → ' + this.count + '人');
+    }
+  }
+
+  canCounter(attacker) {
+    if (!this.alive) return false;
+    if (!this.skills.includes('counter_attack')) return false;
+    if (attacker.isRanged || attacker.tryCounterImmune()) return false;
+    return true;
+  }
+
+  counterStrike(attacker) {
+    if (!this.canCounter(attacker)) return 0;
+    const base = calcDamage(this.count, this.minDmg, this.minDmg, this.maxDmg, this.attack, attacker.defense);
+    let mult = 0.5;
+    let tag = '反击';
+    if (this.special.fury) {
+      mult *= 1.5; // 愤怒：乘法加成
+      tag = '愤怒反击';
+    }
+    const isMentuOn = MENTU_MODE[this.player === '甲' ? 'statsA' : 'statsB'];
+    if (isMentuOn) {
+      mult += 0.5; // 孟图：加法加成
+      tag = this.special.fury ? '愤怒·孟图反击' : '孟图反击';
+    }
+    const dmg = Math.max(0, Math.round(base * mult));
+    attacker.takeDamage(dmg);
+    this.log('    ' + this.fmt() + ' ' + tag + '！造成 ' + dmg + ' 伤害');
+    return dmg;
+  }
+
+  handleCounter(target) {
+    if (!target.alive) return;
+    if (target.canCounter(this)) {
+      const preCount = this.count;
+      target.counterStrike(this);
+      this.log('    ' + this.fmt() + ' ' + preCount + ' → ' + this.count);
+      if (!this.alive) this.log('    ' + this.fmt() + ' 被反击致死！');
+    } else if (this.isRanged) {
+      // 远程不显示任何反击相关内容
+    } else if (target.skills.includes('counter_attack') && this.tryCounterImmune()) {
+      this.log('    ' + this.fmt() + ' 免疫了反击！');
+    }
+    // 目标没有反击能力：什么都不显示
+  }
+
+  performStrikeSequence(target, multiplier, skipMultiplier) {
+    if (!this.alive) return false;
+
+    if (target.tryDodge()) {
+      if (this.special.charge && this.firstAttack) {
+        this.firstAttack = false;
+      }
+      this.log('  ' + this.fmtCount() + ' → ' + target.fmtCount() + ' 被闪避！');
+      this.handleCounter(target);
+      return false;
+    }
+
+    const preCount = target.count;
+    const [dmg, kills] = this.strike(target, multiplier);
+    const causedDeath = target.count < preCount;
+
+    if (multiplier !== 1.0 && !skipMultiplier) {
+      this.log('  ' + this.fmtCount() + ' → ' + target.fmt() + ' 造成 ' + dmg + ' 伤害 (×' + (multiplier*100).toFixed(0) + '%)');
+    } else {
+      this.log('  ' + this.fmtCount() + ' → ' + target.fmt() + ' 造成 ' + dmg + ' 伤害');
+    }
+    this.log('    ' + target.fmt() + ' ' + preCount + ' → ' + target.count);
+
+    this.applyAfterStrike(kills, target);
+    target.tryRevive(preCount);
+    this.handleCounter(target);
+    return causedDeath;
+  }
+
+  performMultiStrike(target, shots, mult, shotName) {
+    this.log('  ' + this.fmt() + ' ' + shotName + '！');
+    for (let i = 0; i < shots; i++) {
+      if (!this.alive || !target.alive) return shots - i; // 目标死了，返回剩余次数
+      const pct = (mult * 100).toFixed(0);
+      const label = shotName === '吐息' ? '次喷射' : '箭';
+      this.log('    第' + (i+1) + label + '（' + pct + '%伤害）:');
+      this.performStrikeSequence(target, mult, true);
+    }
+    return 0; // 全部射完
+  }
+
+  performRampage(target) {
+    let causedDeath = this.performStrikeSequence(target, 1.0);
+    const isAresOn = ARES_MODE[this.player === '甲' ? 'statsA' : 'statsB'];
+    const rampageRate = isAresOn ? 0.9 : (this.special.rampage || 0);
+    if (causedDeath && rampageRate && Math.random() < rampageRate) {
+      if (this.alive && target.alive) {
+        this.log('  ' + this.fmt() + (isAresOn ? ' 阿瑞斯·怒斩！' : ' 怒斩！'));
+        this.performStrikeSequence(target, 1.0);
+      }
+    }
+    // 团队作战：70%几率触发一次50%，二郎神模式100%触发两次50%
+    // 在内部尽可能执行，剩余次数由外部"全军覆没模块"处理
+    const isErOn = ERLANGSHEN_MODE[this.player === '甲' ? 'statsA' : 'statsB'];
+    const teamRate = isErOn ? 1.0 : (this.special.teamwork || 0);
+    const teamShots = isErOn ? 2 : 1;
+    this._teamRem = 0;
+    this._teamIsEr = isErOn;
+    if (this.special.teamwork && this.alive && Math.random() < teamRate) {
+      this._teamRem = teamShots;
+      let currentTarget = target;
+      while (this._teamRem > 0 && this.alive) {
+        if (!currentTarget || !currentTarget.alive) break;
+        this.log('  ' + this.fmt() + (this._teamIsEr ? ' 二郎神·团队作战！' : ' 团队作战！') + '（50%伤害）');
+        this.performStrikeSequence(currentTarget, 0.5, true);
+        this._teamRem--;
+      }
+    }
+    return causedDeath;
+  }
+
+
+}
+
+function priorityKey(s) { return [-s.speed, -s.roll]; }
+
+function simulateRelay(unitA, countA, groupsA, unitB, countB, groupsB, logs, atkBuffA, defBuffA, atkBuffB, defBuffB) {
+  const FAST_MODE = groupsA > 10 && groupsB > 10;
+  const totalAStart = countA * groupsA;
+  const totalBStart = countB * groupsB;
+  let totalAEnd = 0, totalBEnd = 0;
+  let aGroupsLeft = 0, bGroupsLeft = 0;
+
+  function log(line) { if (!FAST_MODE) logs.push(line); }
+
+  const queueA = Array(groupsA).fill(countA);
+  const queueB = Array(groupsB).fill(countB);
+
+  // 第一组上场：按35%概率检查替身生成（队列每个元素 = 一组阿努比斯，含替身+本体）
+  const specA = SPECIAL_ABILITIES[unitA];
+  const isCloneA = specA && specA.clone && Math.random() < CLONE_RATE.statsA / 100;
+  const specB = SPECIAL_ABILITIES[unitB];
+  const isCloneB = specB && specB.clone && Math.random() < CLONE_RATE.statsB / 100;
+
+  let curA = new Squad('甲', isCloneA ? '阿努比斯(替身)' : unitA, queueA.shift(), logs, atkBuffA, defBuffA);
+  if (FAST_MODE) curA.log = function() {};
+  curA.getEnemy = function() { return curB; };
+  let curB = new Squad('乙', isCloneB ? '阿努比斯(替身)' : unitB, queueB.shift(), logs, atkBuffB, defBuffB);
+  if (FAST_MODE) curB.log = function() {};
+  curB.getEnemy = function() { return curA; };
+  let groupNumA = 1, groupNumB = 1;
+
+  const displayNameA = unitA === '阿努比斯(替身)' ? '阿努比斯' : stripSuffix(unitA);
+  const displayNameB = unitB === '阿努比斯(替身)' ? '阿努比斯' : stripSuffix(unitB);
+  logs.push('=== 接力模式：[[R:' + displayNameA + ']](' + countA + ')×' + groupsA + ' vs [[G:' + displayNameB + ']](' + countB + ')×' + groupsB + ' ===');
+  if (isCloneA && !FAST_MODE) logs.push('[[R:阿努比斯]] 替身！');
+  if (isCloneB && !FAST_MODE) logs.push('[[G:阿努比斯]] 替身！');
+  logs.push('');
+
+  function assignRoll(squad) {
+    const used = new Set();
+    if (curA.alive && curA !== squad && curA.speed === squad.speed) used.add(curA.roll.toFixed(8));
+    if (curB.alive && curB !== squad && curB.speed === squad.speed) used.add(curB.roll.toFixed(8));
+    let roll;
+    do { roll = Math.random(); } while (used.has(roll.toFixed(8)));
+    squad.roll = roll;
+  }
+
+  function getSpeedLineBottom(acted) {
+    // 速度线底部 = 已行动中(speed, roll)最低的那个
+    // 速度线从高到低扫，底部就是最慢/最小roll的位置
+    let bs = Infinity, br = Infinity;
+    for (const s of acted) {
+      if (s.speed < bs || (s.speed === bs && s.roll < br)) {
+        bs = s.speed; br = s.roll;
+      }
+    }
+    return [bs, br];
+  }
+
+  function isBehindSpeedLine(squad, bs, br) {
+    // 在速度线底部之后（更慢或同速更小roll）→ 可以行动
+    if (bs === Infinity) return true;           // 没人行动过
+    if (squad.speed < bs) return true;           // 更慢 → 在底部之下
+    if (squad.speed === bs && squad.roll <= br) return true;  // 同速更小roll
+    return false;  // 更快或同速更大roll → 进度已过，不能行动
+  }
+
+  const MAX_ROUNDS = Math.max(5000, (groupsA + groupsB) * 50);
+  let finalRound = 0;
+  for (let rnd = 1; rnd <= MAX_ROUNDS; rnd++) {
+    finalRound = rnd;
+    // 回合开始：当前组死亡且还有替补 → 立即换替补上场
+    if (!curA.alive && queueA.length) {
+      curA = new Squad('甲', unitA, queueA.shift(), logs, atkBuffA, defBuffA);
+      if (FAST_MODE) curA.log = function() {};
+      curA.getEnemy = function() { return curB; };
+      groupNumA++;
+      log('>>> ' + curA.fmt() + ' 第' + groupNumA + '组(' + curA.maxCount + ') 回合开始上场！');
+    }
+    if (!curB.alive && queueB.length) {
+      curB = new Squad('乙', unitB, queueB.shift(), logs, atkBuffB, defBuffB);
+      if (FAST_MODE) curB.log = function() {};
+      curB.getEnemy = function() { return curA; };
+      groupNumB++;
+      log('>>> ' + curB.fmt() + ' 第' + groupNumB + '组(' + curB.maxCount + ') 回合开始上场！');
+    }
+
+    if (curA.alive) assignRoll(curA);
+    if (curB.alive) assignRoll(curB);
+
+    if (!curA.alive && !queueA.length) {
+      log('\n=== 战斗结束：' + curB.fmt() + ' 胜利 ===');
+      const remB = 1 + queueB.length;
+      log('  ' + curB.fmt() + ' 剩余：' + curB.count + '/' + curB.maxCount + ' (' + remB + '/' + groupsB + '组)');
+      if (FAST_MODE) logFastResult();
+      return [unitB, curB.count, 0];
+    }
+    if (!curB.alive && !queueB.length) {
+      log('\n=== 战斗结束：' + curA.fmt() + ' 胜利 ===');
+      const remA = 1 + queueA.length;
+      log('  ' + curA.fmt() + ' 剩余：' + curA.count + '/' + curA.maxCount + ' (' + remA + '/' + groupsA + '组)');
+      if (FAST_MODE) logFastResult();
+      return [unitA, curA.count, 0];
+    }
+
+    log('\n--- 回合 ' + rnd + ' ---');
+
+    const aliveA = curA.alive, aliveB = curB.alive;
+    if (aliveA && aliveB) {
+      if (curA.speed !== curB.speed) {
+        log('  速度判定：' + (curA.speed > curB.speed ? curA.fmt() : curB.fmt()) + '先动');
+      } else {
+        log('  速度相同(' + curA.speed + ')，随机先手：' + (curA.roll > curB.roll ? curA.fmt() : curB.fmt()) + '先动');
+      }
+    }
+
+    let acted = new Set();
+
+    function canAct(squad, actedSet) {
+      if (actedSet.has(squad) || !squad.alive) return false;
+      const [bs, br] = getSpeedLineBottom(actedSet);
+      return isBehindSpeedLine(squad, bs, br);
+    }
+
+    function buildQueue(actedSet) {
+      const [bs, br] = getSpeedLineBottom(actedSet);
+      let q = [];
+      if (curA.alive && !actedSet.has(curA) && isBehindSpeedLine(curA, bs, br)) q.push(['甲', curA]);
+      if (curB.alive && !actedSet.has(curB) && isBehindSpeedLine(curB, bs, br)) q.push(['乙', curB]);
+      q.sort((a, b) => {
+        const ka = priorityKey(a[1]), kb = priorityKey(b[1]);
+        for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i] - kb[i];
+        return 0;
+      });
+      return q;
+    }
+
+    let queue = buildQueue(acted);
+
+    while (queue.length > 0) {
+      const [owner, attacker] = queue.shift();
+      acted.add(attacker);
+
+      let defender = owner === '甲' ? curB : curA;
+      if (!attacker.alive || !defender.alive) continue;
+
+      log('\n  ' + attacker.fmtCount() + ' 行动：');
+
+      let msRem = 0, msMult = 1.0, msLabel = '箭';
+
+      if (attacker.special.triple_crossbow) {
+        const isHYOn = HUANGYUEYING_MODE[attacker.player === '甲' ? 'statsA' : 'statsB'];
+        const tcMult = isHYOn ? 0.70 : attacker.special.triple_crossbow;
+        msRem = attacker.performMultiStrike(defender, 3, tcMult, isHYOn ? '黄月英·三连弩' : '三连弩');
+        msMult = tcMult;
+      } else if (attacker.special.breath) {
+        msRem = attacker.performMultiStrike(defender, 3, attacker.special.breath, '吐息');
+        msMult = attacker.special.breath;
+        msLabel = '次喷射';
+      } else {
+        attacker.performRampage(defender);
+      }
+
+      if (!attacker.alive) {
+        const ga = owner === '甲' ? groupNumA : groupNumB;
+        if (attacker.unitName === '阿努比斯(替身)') {
+          log('\n  ★ ' + attacker.fmt() + ' 全军覆没！');
+        } else {
+          log('\n  ★ ' + attacker.fmt() + ' 第' + ga + '组全军覆没！');
+        }
+        if (owner === '甲') {
+          if (attacker.unitName === '阿努比斯(替身)') {
+            // 替身死了 → 上真身（同一组，不消耗队列）
+            curA = new Squad('甲', unitA, attacker.maxCount, logs, atkBuffA, defBuffA);
+            if (FAST_MODE) curA.log = function() {};
+            curA.getEnemy = function() { return curB; };
+            log('>>> ' + curA.fmt() + ' 第' + groupNumA + '组(' + curA.maxCount + ') 上场！');
+            assignRoll(curA);
+            queue = buildQueue(acted);
+          } else if (queueA.length) {
+            // 真身死了 → 从队列取下一组，检查替身
+            const nextCountA = queueA.shift();
+            const isCloneA = SPECIAL_ABILITIES[unitA] && SPECIAL_ABILITIES[unitA].clone && Math.random() < CLONE_RATE.statsA / 100;
+            curA = new Squad('甲', isCloneA ? '阿努比斯(替身)' : unitA, nextCountA, logs, atkBuffA, defBuffA);
+            if (FAST_MODE) curA.log = function() {};
+            curA.getEnemy = function() { return curB; };
+            groupNumA++;
+            if (curA.unitName === '阿努比斯(替身)') {
+              log('>>> ' + curA.fmt() + ' 上场！');
+            } else {
+              log('>>> ' + curA.fmt() + ' 第' + groupNumA + '组(' + curA.maxCount + ') 上场！');
+            }
+            assignRoll(curA);
+            queue = buildQueue(acted);
+          } else {
+            log('\n=== 战斗结束：' + curB.fmt() + ' 胜利 ===');
+            const remB2 = 1 + queueB.length;
+            log('  ' + curB.fmt() + ' 剩余：' + curB.count + '/' + curB.maxCount + ' (' + remB2 + '/' + groupsB + '组)');
+            if (FAST_MODE) logFastResult();
+            return [unitB, curB.count, 0];
+          }
+        } else {
+          if (attacker.unitName === '阿努比斯(替身)') {
+            // 替身死了 → 上真身（同一组，不消耗队列）
+            curB = new Squad('乙', unitB, attacker.maxCount, logs, atkBuffB, defBuffB);
+            if (FAST_MODE) curB.log = function() {};
+            curB.getEnemy = function() { return curA; };
+            log('>>> ' + curB.fmt() + ' 第' + groupNumB + '组(' + curB.maxCount + ') 上场！');
+            assignRoll(curB);
+            queue = buildQueue(acted);
+          } else if (queueB.length) {
+            // 真身死了 → 从队列取下一组，检查替身
+            const nextCountB = queueB.shift();
+            const isCloneB = SPECIAL_ABILITIES[unitB] && SPECIAL_ABILITIES[unitB].clone && Math.random() < CLONE_RATE.statsB / 100;
+            curB = new Squad('乙', isCloneB ? '阿努比斯(替身)' : unitB, nextCountB, logs, atkBuffB, defBuffB);
+            if (FAST_MODE) curB.log = function() {};
+            curB.getEnemy = function() { return curA; };
+            groupNumB++;
+            if (curB.unitName === '阿努比斯(替身)') {
+              log('>>> ' + curB.fmt() + ' 上场！');
+            } else {
+              log('>>> ' + curB.fmt() + ' 第' + groupNumB + '组(' + curB.maxCount + ') 上场！');
+            }
+            assignRoll(curB);
+            queue = buildQueue(acted);
+          } else {
+            log('\n=== 战斗结束：' + curA.fmt() + ' 胜利 ===');
+            const remA2 = 1 + queueA.length;
+            log('  ' + curA.fmt() + ' 剩余：' + curA.count + '/' + curA.maxCount + ' (' + remA2 + '/' + groupsA + '组)');
+            if (FAST_MODE) logFastResult();
+            return [unitA, curA.count, 0];
+          }
+        }
+      }
+
+      if (!defender.alive) {
+        const gd = defender.player === '甲' ? groupNumA : groupNumB;
+        if (defender.unitName === '阿努比斯(替身)') {
+          log('\n  ★ ' + defender.fmt() + ' 全军覆没！');
+        } else {
+          log('\n  ★ ' + defender.fmt() + ' 第' + gd + '组全军覆没！');
+        }
+
+        // 全军覆没模块（接力模式）：替补上场 + 继续射击
+        while (true) {
+          // 1. 上场下一组（先不分配随机数）
+          if (defender.player === '甲') {
+            if (defender.unitName === '阿努比斯(替身)') {
+              // 替身死了 → 上真身（同一组，不消耗队列）
+              curA = new Squad('甲', unitA, defender.maxCount, logs, atkBuffA, defBuffA);
+              if (FAST_MODE) curA.log = function() {};
+              defender = curA; // 同步 defender 引用，避免下次循环误判
+              log('>>> ' + curA.fmt() + ' 第' + groupNumA + '组(' + curA.maxCount + ') 上场！');
+            } else if (!queueA.length) {
+              log('\n=== 战斗结束：' + curB.fmt() + ' 胜利 ===');
+              const remB = 1 + queueB.length;
+              log('  ' + curB.fmt() + ' 剩余：' + curB.count + '/' + curB.maxCount + ' (' + remB + '/' + groupsB + '组)');
+              if (FAST_MODE) logFastResult();
+              return [unitB, curB.count, 0];
+            } else {
+              // 真身死了 → 从队列取下一组，检查替身
+              const nextCountA = queueA.shift();
+              const isCloneA = SPECIAL_ABILITIES[unitA] && SPECIAL_ABILITIES[unitA].clone && Math.random() < CLONE_RATE.statsA / 100;
+              curA = new Squad('甲', isCloneA ? '阿努比斯(替身)' : unitA, nextCountA, logs, atkBuffA, defBuffA);
+              if (FAST_MODE) curA.log = function() {};
+              if (isCloneA) defender = curA; // 替身上场时同步 defender，避免循环中重复创建
+              groupNumA++;
+              if (curA.unitName === '阿努比斯(替身)') {
+                log('>>> ' + curA.fmt() + ' 上场！');
+              } else {
+                log('>>> ' + curA.fmt() + ' 第' + groupNumA + '组(' + curA.maxCount + ') 上场！');
+              }
+            }
+          } else {
+            if (defender.unitName === '阿努比斯(替身)') {
+              // 替身死了 → 上真身（同一组，不消耗队列）
+              curB = new Squad('乙', unitB, defender.maxCount, logs, atkBuffB, defBuffB);
+              if (FAST_MODE) curB.log = function() {};
+              defender = curB; // 同步 defender 引用，避免下次循环误判
+              log('>>> ' + curB.fmt() + ' 第' + groupNumB + '组(' + curB.maxCount + ') 上场！');
+            } else if (!queueB.length) {
+              log('\n=== 战斗结束：' + curA.fmt() + ' 胜利 ===');
+              const remA = 1 + queueA.length;
+              log('  ' + curA.fmt() + ' 剩余：' + curA.count + '/' + curA.maxCount + ' (' + remA + '/' + groupsA + '组)');
+              if (FAST_MODE) logFastResult();
+              return [unitA, curA.count, 0];
+            } else {
+              // 真身死了 → 从队列取下一组，检查替身
+              const nextCountB = queueB.shift();
+              const isCloneB = SPECIAL_ABILITIES[unitB] && SPECIAL_ABILITIES[unitB].clone && Math.random() < CLONE_RATE.statsB / 100;
+              curB = new Squad('乙', isCloneB ? '阿努比斯(替身)' : unitB, nextCountB, logs, atkBuffB, defBuffB);
+              if (FAST_MODE) curB.log = function() {};
+              if (isCloneB) defender = curB; // 替身上场时同步 defender，避免循环中重复创建
+              groupNumB++;
+              if (curB.unitName === '阿努比斯(替身)') {
+                log('>>> ' + curB.fmt() + ' 上场！');
+              } else {
+                log('>>> ' + curB.fmt() + ' 第' + groupNumB + '组(' + curB.maxCount + ') 上场！');
+              }
+            }
+          }
+
+          // 2. 检查攻击方是否还有剩余箭数或团队作战次数
+          if ((msRem <= 0 && attacker._teamRem <= 0) || !attacker.alive) break;
+
+          // 3. 继续射击剩余次数（三连弩/吐息）
+          let shotNum = 4 - msRem;
+          while (msRem > 0 && attacker.alive) {
+            const currentTarget = defender.player === '甲' ? curA : curB;
+            if (!currentTarget.alive) break;
+            log('    第' + shotNum + msLabel + '（' + (msMult*100).toFixed(0) + '%伤害）:');
+            attacker.performStrikeSequence(currentTarget, msMult, true);
+            msRem--;
+            shotNum++;
+          }
+
+          // 3.5 处理团队作战剩余次数（狴犴二郎神模式等）
+          while (attacker._teamRem > 0 && attacker.alive) {
+            const currentTarget = defender.player === '甲' ? curA : curB;
+            if (!currentTarget.alive) break;
+            attacker.log('  ' + attacker.fmt() + (attacker._teamIsEr ? ' 二郎神·团队作战！' : ' 团队作战！') + '（50%伤害）');
+            attacker.performStrikeSequence(currentTarget, 0.5, true);
+            attacker._teamRem--;
+          }
+
+          // 4. 检查目标是否又被打死了
+          const currentTarget = defender.player === '甲' ? curA : curB;
+          if (currentTarget.alive) break;
+          // 目标又死了，播报并继续循环（重复模块）
+          const gc = currentTarget.player === '甲' ? groupNumA : groupNumB;
+          if (currentTarget.unitName === '阿努比斯(替身)') {
+            log('\n  ★ ' + currentTarget.fmt() + ' 全军覆没！');
+          } else {
+            log('\n  ★ ' + currentTarget.fmt() + ' 第' + gc + '组全军覆没！');
+          }
+        }
+
+        // 5. 攻击方行动结束，分配随机数，判定出手权
+        if (curA.alive) assignRoll(curA);
+        if (curB.alive) assignRoll(curB);
+        queue = buildQueue(acted);
+      }
+    }
+  }
+
+  log('\n=== 战斗结束：回合耗尽(' + MAX_ROUNDS + ')，平局 ===');
+  const remA3 = 1 + queueA.length;
+  const remB3 = 1 + queueB.length;
+  log('  ' + curA.fmt() + ' 剩余：' + curA.count + '/' + curA.maxCount + ' (' + remA3 + '/' + groupsA + '组)');
+  log('  ' + curB.fmt() + ' 剩余：' + curB.count + '/' + curB.maxCount + ' (' + remB3 + '/' + groupsB + '组)');
+  if (FAST_MODE) logFastResult();
+  return ['平局', curA.count, curB.count];
+  function logFastResult() {
+    const aAlive = curA.alive ? 1 : 0;
+    const bAlive = curB.alive ? 1 : 0;
+    const remA = (curA.alive ? curA.count : 0) + queueA.reduce(function(s,c){return s+c;}, 0);
+    const remB = (curB.alive ? curB.count : 0) + queueB.reduce(function(s,c){return s+c;}, 0);
+    const remGA = aAlive + queueA.length;
+    const remGB = bAlive + queueB.length;
+    const aLoss = totalAStart - remA;
+    const bLoss = totalBStart - remB;
+    // 伤亡对比：红方伤亡 / 绿方伤亡 = 比值
+    let ratioStr = '\n战损比：' + aLoss + '/' + bLoss;
+    if (bLoss > 0) ratioStr += ' = ' + (aLoss / bLoss).toFixed(4);
+
+    const redName = '[[R:' + stripSuffix(unitA) + ']]';
+    const greenName = '[[G:' + stripSuffix(unitB) + ']]';
+
+    logs.push("\n（双方组数均超过10组，进入快速模式）");
+    logs.push("=== 快速模式统计（第 " + finalRound + " 回合结束）===");
+    logs.push(redName + ": 初始 " + totalAStart + " 人(" + groupsA + "组) | 剩余 " + remA + " 人(" + remGA + "组)");
+    logs.push(greenName + ": 初始 " + totalBStart + " 人(" + groupsB + "组) | 剩余 " + remB + " 人(" + remGB + "组)" + ratioStr);
+  }
+
+}
+
+// ==================== 5. UI 控制 ====================
+const logArea = document.getElementById('logArea');
+const status = document.getElementById('status');
+
+function appendLog(text) {
+  const span = document.createElement('span');
+  let html = text
+    .replace(/\[\[R:([^\]]+)\]\]/g, '<span style="color:#ff6b6b;">$1</span>')
+    .replace(/\[\[G:([^\]]+)\]\]/g, '<span style="color:#6bff6b;">$1</span>');
+
+  if (text.startsWith('---')) span.className = 'round';
+  else if (text.includes('★') && text.includes('全军覆没')) span.className = 'death';
+  else if (text.startsWith('>>>')) span.className = 'reinforce';
+  else if (text.startsWith('===') && (text.includes('胜利') || text.includes('平局'))) span.className = 'win';
+
+  span.innerHTML = html + '\n';
+  logArea.appendChild(span);
+  logArea.scrollTop = logArea.scrollHeight;
+}
+
+function clearLog() {
+  logArea.innerHTML = '';
+  status.textContent = '就绪';
+}
+
+function startSim() {
+  const btn = document.getElementById('btnStart');
+  btn.disabled = true;
+  clearLog();
+
+  const unitA = selA.value;
+  const unitB = selB.value;
+  let countA = parseInt(document.getElementById('countA').value) || 1;
+  let countB = parseInt(document.getElementById('countB').value) || 1;
+  let groupsA = parseInt(document.getElementById('groupsA').value) || 1;
+  let groupsB = parseInt(document.getElementById('groupsB').value) || 1;
+  if (groupsA > 10000) groupsA = 10000;
+  if (groupsB > 10000) groupsB = 10000;
+
+  const capA = getUnitAttr(unitA, '甲').max_troop_size;
+  const capB = getUnitAttr(unitB, '乙').max_troop_size;
+  if (countA > capA) countA = capA;
+  if (countB > capB) countB = capB;
+
+  const logs = [];
+
+  const atkBuffA = parseInt(document.getElementById('atkBuffA').value) || 0;
+  const defBuffA = parseInt(document.getElementById('defBuffA').value) || 0;
+  const atkBuffB = parseInt(document.getElementById('atkBuffB').value) || 0;
+  const defBuffB = parseInt(document.getElementById('defBuffB').value) || 0;
+
+  status.textContent = '模拟中...';
+
+  setTimeout(() => {
+    simulateRelay(unitA, countA, groupsA, unitB, countB, groupsB, logs, atkBuffA, defBuffA, atkBuffB, defBuffB);
+
+    logs.forEach(line => appendLog(line));
+    status.textContent = '模拟完成';
+    btn.disabled = false;
+  }, 50);
+}
+
+// ==================== 制作信息弹窗 ====================
+function openCredits() {
+  document.getElementById('creditsOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeCredits(e) {
+  if (!e || e.target === document.getElementById('creditsOverlay')) {
+    document.getElementById('creditsOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeCredits();
+});
+</script>
+<!-- v:2026-07-07-v4.0 -->
+</body>
+</html>
