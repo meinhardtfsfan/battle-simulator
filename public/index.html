@@ -7,9 +7,10 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <script>
-if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
-  sessionStorage.setItem('_v19', '1');
-  location.replace(location.href.split('?')[0] + '?v=19');
+// 强制防CDN缓存 - 只执行一次
+if (!sessionStorage.getItem('_v18') && location.search !== '?v=18') {
+  sessionStorage.setItem('_v18', '1');
+  location.replace(location.href.split('?')[0] + '?v=18');
 }
 </script>
 <title>模拟帝国 - 战斗模拟器</title>
@@ -82,6 +83,24 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     color: #888;
     margin-top: 2px;
   }
+  .buff-hint {
+    font-size: 0.7rem;
+    color: #888;
+    font-weight: normal;
+  }
+  .mode-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .mode-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #e0e0e0;
+    cursor: pointer;
+  }
   .btn {
     width: 100%;
     padding: 14px;
@@ -97,11 +116,6 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     color: #fff;
   }
   .btn-primary:active { transform: scale(0.98); opacity: 0.9; }
-  .btn-primary:disabled {
-    background: #555;
-    cursor: not-allowed;
-    opacity: 0.6;
-  }
   .btn-secondary {
     background: #0f3460;
     color: #a0c4ff;
@@ -177,6 +191,7 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
   .unit-stats .stat-ares-text { color: #f0c040; white-space: nowrap; font-weight: bold; }
   .unit-stats .no-skill { color: #666; font-style: italic; }
 
+  /* === 面板数值调整按钮 === */
   .stat-bar {
     display: flex;
     align-items: center;
@@ -234,6 +249,7 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     outline: none;
   }
   .stat-box:focus { border-color: #e94560; }
+  .stat-box:focus { border-color: #e94560; }
   .stat-box::-webkit-outer-spin-button,
   .stat-box::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
   .status-bar {
@@ -247,6 +263,8 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     height: 18px;
     accent-color: #e94560;
   }
+
+  /* === 版本号 === */
   .version-badge {
     text-align: center;
     color: #f0c040;
@@ -265,6 +283,8 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     margin-bottom: 15px;
     padding-right: 4px;
   }
+
+  /* === 制作信息弹窗 === */
   .credits-btn {
     display: block;
     text-align: center;
@@ -283,6 +303,7 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     border-color: #f0c040;
     background: rgba(240, 192, 64, 0.05);
   }
+
   .copyright {
     text-align: center;
     color: #555;
@@ -290,6 +311,7 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     margin-top: -4px;
     margin-bottom: 10px;
   }
+
   .credits-overlay {
     display: none;
     position: fixed;
@@ -301,6 +323,7 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     padding: 20px;
   }
   .credits-overlay.active { display: flex; }
+
   .credits-modal {
     background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
     border: 1px solid #f0c040;
@@ -317,6 +340,7 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
   }
+
   .credits-header {
     background: linear-gradient(135deg, #0f3460, #1a4a7a);
     color: #a0c4ff;
@@ -327,8 +351,15 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     top: 0;
     z-index: 10;
   }
-  .credits-header h2 { font-size: 1.3rem; margin-bottom: 4px; }
-  .credits-header .subtitle { font-size: 0.8rem; opacity: 0.8; }
+  .credits-header h2 {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+  }
+  .credits-header .subtitle {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+
   .credits-close {
     position: absolute;
     top: 12px;
@@ -342,8 +373,14 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     transition: opacity 0.2s;
   }
   .credits-close:hover { opacity: 1; color: #fff; }
-  .credits-body { padding: 20px; }
-  .credits-section { margin-bottom: 24px; }
+
+  .credits-body {
+    padding: 20px;
+  }
+
+  .credits-section {
+    margin-bottom: 24px;
+  }
   .credits-section-title {
     color: #f0c040;
     font-size: 0.9rem;
@@ -355,6 +392,7 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     align-items: center;
     gap: 6px;
   }
+
   .credits-row {
     display: flex;
     justify-content: space-between;
@@ -364,8 +402,14 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     font-size: 0.85rem;
   }
   .credits-row:last-child { border-bottom: none; }
-  .credits-role { color: #a0a0a0; }
-  .credits-name { color: #6bc0ff; font-weight: bold; }
+  .credits-role {
+    color: #a0a0a0;
+  }
+  .credits-name {
+    color: #6bc0ff;
+    font-weight: bold;
+  }
+
   .credits-quote {
     text-align: center;
     color: #666;
@@ -374,6 +418,7 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     margin: 20px 0;
     line-height: 1.8;
   }
+
   .credits-footer {
     text-align: center;
     padding: 16px 20px;
@@ -381,16 +426,25 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
     color: #555;
     font-size: 0.7rem;
   }
-  .credits-modal::-webkit-scrollbar { width: 6px; }
-  .credits-modal::-webkit-scrollbar-track { background: #0a0a1a; }
-  .credits-modal::-webkit-scrollbar-thumb { background: #f0c040; border-radius: 3px; }
+
+  /* 滚动条美化 */
+  .credits-modal::-webkit-scrollbar {
+    width: 6px;
+  }
+  .credits-modal::-webkit-scrollbar-track {
+    background: #0a0a1a;
+  }
+  .credits-modal::-webkit-scrollbar-thumb {
+    background: #f0c040;
+    border-radius: 3px;
+  }
 </style>
 </head>
 <body>
 <div class="container">
   <h1>⚔️ 模拟帝国 战斗模拟器</h1>
-  <div class="version-badge">正式版 5.0 · 后端版</div>
-  <div class="update-date">更新于 2026年7月31日</div>
+  <div class="version-badge">正式版 4.0</div>
+  <div class="update-date">更新于 2026年7月7日</div>
 
   <div class="card">
     <div class="two-col">
@@ -473,6 +527,7 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
   <div class="copyright">模拟模拟帝国制作委员会 &copy; 2026 | 版权没有</div>
 </div>
 
+<!-- 制作信息弹窗 -->
 <div class="credits-overlay" id="creditsOverlay" onclick="closeCredits(event)">
   <div class="credits-modal" onclick="event.stopPropagation()">
     <div class="credits-header">
@@ -480,6 +535,7 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
       <h2>制作名单</h2>
     </div>
     <div class="credits-body">
+
       <div class="credits-section">
         <div class="credits-section-title">核心团队</div>
         <div class="credits-row"><span class="credits-role">总策划 / 制作人</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
@@ -487,6 +543,7 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
         <div class="credits-row"><span class="credits-role">UI/UX 设计师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
         <div class="credits-row"><span class="credits-role">视觉美术总监</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
       </div>
+
       <div class="credits-section">
         <div class="credits-section-title">战斗引擎组</div>
         <div class="credits-row"><span class="credits-role">战斗系统设计师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
@@ -495,16 +552,18 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
         <div class="credits-row"><span class="credits-role">反击逻辑架构师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
         <div class="credits-row"><span class="credits-role">RNG 随机数监督员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
       </div>
+
       <div class="credits-section">
         <div class="credits-section-title">技术支撑组</div>
-        <div class="credits-row"><span class="credits-role">后端架构 / Cloudflare</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
         <div class="credits-row"><span class="credits-role">HTML 打字员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
         <div class="credits-row"><span class="credits-role">CSS 调色师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
         <div class="credits-row"><span class="credits-role">JavaScript 魔术师</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
-        <div class="credits-row"><span class="credits-role">API 接口对接员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">浏览器兼容测试员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
         <div class="credits-row"><span class="credits-role">CDN 缓存对抗战士</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
+        <div class="credits-row"><span class="credits-role">F12 控制台常客</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
         <div class="credits-row"><span class="credits-role">Bug 制造 & 修复专家</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
       </div>
+
       <div class="credits-section">
         <div class="credits-section-title">测试团队</div>
         <div class="credits-row"><span class="credits-role">QA 总监</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
@@ -512,20 +571,17 @@ if (!sessionStorage.getItem('_v19') && location.search !== '?v=19') {
         <div class="credits-row"><span class="credits-role">浏览器崩溃记录保持者</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
         <div class="credits-row"><span class="credits-role">回合耗尽研究员</span><span class="credits-name">帆、Kimi K2.6 Agent</span></div>
       </div>
+
     </div>
-    <div class="credits-footer">模拟模拟帝国制作委员会 &copy; 2026 | 版权没有</div>
+    <div class="credits-footer">
+      模拟模拟帝国制作委员会 &copy; 2026 | 版权没有
+    </div>
   </div>
 </div>
 
 <script>
-// ============================================================
-//  配置：替换为你的 Cloudflare Worker 地址
-// ============================================================
-const API_BASE = '';
-// 示例: const API_BASE = '';
-
 // ==================== 0. 数据库 ====================
-const UNITS_DB = {"殉教者(波斯)": {"name": "殉教者", "faction": "persian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 9, "defense": 8, "min_damage": 3, "max_damage": 4, "hp": 18}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "弓箭兵(波斯)": {"name": "弓箭兵", "faction": "persian", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 6, "defense": 8, "min_damage": 2, "max_damage": 5, "hp": 18}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "长矛步兵(波斯)": {"name": "长矛步兵", "faction": "persian", "attributes": {"speed": 5, "max_troop_size": 149, "attack": 11, "defense": 12, "min_damage": 4, "max_damage": 8, "hp": 30}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "象骑射手(波斯)": {"name": "象骑射手", "faction": "persian", "attributes": {"speed": 4, "max_troop_size": 124, "attack": 7, "defense": 12, "min_damage": 5, "max_damage": 10, "hp": 129}, "tags": {"role": "ranged", "size": 3, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "轻骑兵(波斯)": {"name": "轻骑兵", "faction": "persian", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 12, "defense": 12, "min_damage": 7, "max_damage": 7, "hp": 36}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "铁甲骑士(波斯)": {"name": "铁甲骑士", "faction": "persian", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 20, "defense": 17, "min_damage": 12, "max_damage": 17, "hp": 50}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "影子武士(波斯)": {"name": "影子武士", "faction": "persian", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 17, "defense": 12, "min_damage": 10, "max_damage": 12, "hp": 36}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "猛犸(波斯)": {"name": "猛犸", "faction": "persian", "attributes": {"speed": 3, "max_troop_size": 124, "attack": 21, "defense": 17, "min_damage": 9, "max_damage": 15, "hp": 150}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "弓箭手(希腊)": {"name": "弓箭手", "faction": "greek", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 9, "defense": 9, "min_damage": 2, "max_damage": 5, "hp": 20}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "雅典卫兵(希腊)": {"name": "雅典卫兵", "faction": "greek", "attributes": {"speed": 7, "max_troop_size": 174, "attack": 9, "defense": 6, "min_damage": 3, "max_damage": 5, "hp": 20}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "标枪手(希腊)": {"name": "标枪手", "faction": "greek", "attributes": {"speed": 6, "max_troop_size": 149, "attack": 10, "defense": 9, "min_damage": 4, "max_damage": 8, "hp": 20}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "泰坦(希腊)": {"name": "泰坦", "faction": "greek", "attributes": {"speed": 6, "max_troop_size": 124, "attack": 14, "defense": 11, "min_damage": 7, "max_damage": 11, "hp": 89}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "女祭司(希腊)": {"name": "女祭司", "faction": "greek", "attributes": {"speed": 4, "max_troop_size": 149, "attack": 11, "defense": 13, "min_damage": 0, "max_damage": 0, "hp": 19}, "tags": {"role": "healer", "size": 1, "special_skills": ["heal"], "attack_pattern": "support", "is_melee": false, "is_ranged": false, "is_healer": true, "can_counter": false}}, "重装骑兵(希腊)": {"name": "重装骑兵", "faction": "greek", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 16, "defense": 15, "min_damage": 10, "max_damage": 13, "hp": 36}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "斯巴达勇士(希腊)": {"name": "斯巴达勇士", "faction": "greek", "attributes": {"speed": 6, "max_troop_size": 149, "attack": 16, "defense": 17, "min_damage": 9, "max_damage": 12, "hp": 46}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "半人马(希腊)": {"name": "半人马", "faction": "greek", "attributes": {"speed": 8, "max_troop_size": 124, "attack": 19, "defense": 18, "min_damage": 9, "max_damage": 11, "hp": 100}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "长戟步兵(中国)": {"name": "长戟步兵", "faction": "chinese", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 12, "defense": 6, "min_damage": 4, "max_damage": 5, "hp": 25}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "盾兵(中国)": {"name": "盾兵", "faction": "chinese", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 5, "defense": 19, "min_damage": 2, "max_damage": 5, "hp": 25}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "连弩校尉(中国)": {"name": "连弩校尉", "faction": "chinese", "attributes": {"speed": 6, "max_troop_size": 149, "attack": 6, "defense": 6, "min_damage": 3, "max_damage": 7, "hp": 22}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "轻骑兵(中国)": {"name": "轻骑兵", "faction": "chinese", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 11, "defense": 11, "min_damage": 6, "max_damage": 8, "hp": 35}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "御林将军(中国)": {"name": "御林将军", "faction": "chinese", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 14, "defense": 17, "min_damage": 9, "max_damage": 14, "hp": 42}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "狴犴(中国)": {"name": "狴犴", "faction": "chinese", "attributes": {"speed": 8, "max_troop_size": 124, "attack": 21, "defense": 12, "min_damage": 6, "max_damage": 13, "hp": 62}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "女娲(中国)": {"name": "女娲", "faction": "chinese", "attributes": {"speed": 6, "max_troop_size": 124, "attack": 20, "defense": 17, "min_damage": 9, "max_damage": 10, "hp": 100}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "努比亚卫兵(埃及)": {"name": "努比亚卫兵", "faction": "egyptian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 9, "defense": 8, "min_damage": 2, "max_damage": 5, "hp": 21}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "长弓兵(埃及)": {"name": "长弓兵", "faction": "egyptian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 10, "defense": 8, "min_damage": 3, "max_damage": 6, "hp": 19}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "精锐枪盾兵(埃及)": {"name": "精锐枪盾兵", "faction": "egyptian", "attributes": {"speed": 5, "max_troop_size": 149, "attack": 14, "defense": 11, "min_damage": 4, "max_damage": 7, "hp": 39}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "木乃伊战士(埃及)": {"name": "木乃伊战士", "faction": "egyptian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 8, "defense": 6, "min_damage": 6, "max_damage": 7, "hp": 35}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "皇家木乃伊(埃及)": {"name": "皇家木乃伊", "faction": "egyptian", "attributes": {"speed": 7, "max_troop_size": 149, "attack": 16, "defense": 12, "min_damage": 6, "max_damage": 10, "hp": 85}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "阿努比斯(埃及)": {"name": "阿努比斯", "faction": "egyptian", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 21, "defense": 16, "min_damage": 10, "max_damage": 13, "hp": 70}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "荷鲁斯(埃及)": {"name": "荷鲁斯", "faction": "egyptian", "attributes": {"speed": 4, "max_troop_size": 124, "attack": 21, "defense": 17, "min_damage": 10, "max_damage": 15, "hp": 130}, "tags": {"role": "melee_counter", "size": 3, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "梭镖投射手(阿兹特克)": {"name": "梭镖投射手", "faction": "aztec", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 9, "defense": 8, "min_damage": 2, "max_damage": 5, "hp": 24}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "黑曜石刃枪兵(阿兹特克)": {"name": "黑曜石刃枪兵", "faction": "aztec", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 14, "defense": 10, "min_damage": 4, "max_damage": 7, "hp": 36}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "美洲虎武士(阿兹特克)": {"name": "美洲虎武士", "faction": "aztec", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 17, "defense": 14, "min_damage": 8, "max_damage": 10, "hp": 42}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "雄鹰武士(阿兹特克)": {"name": "雄鹰武士", "faction": "aztec", "attributes": {"speed": 7, "max_troop_size": 149, "attack": 14, "defense": 10, "min_damage": 6, "max_damage": 8, "hp": 36}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "巫师(阿兹特克)": {"name": "巫师", "faction": "aztec", "attributes": {"speed": 6, "max_troop_size": 149, "attack": 6, "defense": 10, "min_damage": 2, "max_damage": 4, "hp": 22}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "审判者(阿兹特克)": {"name": "审判者", "faction": "aztec", "attributes": {"speed": 6, "max_troop_size": 124, "attack": 16, "defense": 14, "min_damage": 8, "max_damage": 11, "hp": 90}, "tags": {"role": "melee_counter", "size": 3, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "羽蛇神(阿兹特克)": {"name": "羽蛇神", "faction": "aztec", "attributes": {"speed": 6, "max_troop_size": 124, "attack": 20, "defense": 16, "min_damage": 10, "max_damage": 15, "hp": 120}, "tags": {"role": "ranged", "size": 3, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}};
+const UNITS_DB = {"殉教者(波斯)": {"name": "殉教者", "faction": "persian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 9, "defense": 8, "min_damage": 3, "max_damage": 4, "hp": 18}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "弓箭兵(波斯)": {"name": "弓箭兵", "faction": "persian", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 6, "defense": 8, "min_damage": 2, "max_damage": 5, "hp": 18}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "长矛步兵(波斯)": {"name": "长矛步兵", "faction": "persian", "attributes": {"speed": 5, "max_troop_size": 149, "attack": 11, "defense": 12, "min_damage": 4, "max_damage": 8, "hp": 30}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "象骑射手(波斯)": {"name": "象骑射手", "faction": "persian", "attributes": {"speed": 4, "max_troop_size": 124, "attack": 7, "defense": 12, "min_damage": 5, "max_damage": 10, "hp": 129}, "tags": {"role": "ranged", "size": 3, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "轻骑兵(波斯)": {"name": "轻骑兵", "faction": "persian", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 12, "defense": 12, "min_damage": 7, "max_damage": 7, "hp": 36}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "铁甲骑士(波斯)": {"name": "铁甲骑士", "faction": "persian", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 20, "defense": 17, "min_damage": 12, "max_damage": 17, "hp": 50}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "影子武士(波斯)": {"name": "影子武士", "faction": "persian", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 17, "defense": 12, "min_damage": 10, "max_damage": 12, "hp": 36}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "猛犸(波斯)": {"name": "猛犸", "faction": "persian", "attributes": {"speed": 3, "max_troop_size": 124, "attack": 21, "defense": 17, "min_damage": 9, "max_damage": 15, "hp": 150}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "弓箭手(希腊)": {"name": "弓箭手", "faction": "greek", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 9, "defense": 9, "min_damage": 2, "max_damage": 5, "hp": 20}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "雅典卫兵(希腊)": {"name": "雅典卫兵", "faction": "greek", "attributes": {"speed": 7, "max_troop_size": 174, "attack": 9, "defense": 6, "min_damage": 3, "max_damage": 5, "hp": 20}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "标枪手(希腊)": {"name": "标枪手", "faction": "greek", "attributes": {"speed": 6, "max_troop_size": 149, "attack": 10, "defense": 9, "min_damage": 4, "max_damage": 8, "hp": 20}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "泰坦(希腊)": {"name": "泰坦", "faction": "greek", "attributes": {"speed": 6, "max_troop_size": 124, "attack": 14, "defense": 11, "min_damage": 7, "max_damage": 11, "hp": 89}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "女祭司(希腊)": {"name": "女祭司", "faction": "greek", "attributes": {"speed": 4, "max_troop_size": 149, "attack": 11, "defense": 13, "min_damage": 0, "max_damage": 0, "hp": 19}, "tags": {"role": "healer", "size": 1, "special_skills": ["heal"], "attack_pattern": "support", "is_melee": false, "is_ranged": false, "is_healer": true, "can_counter": false}}, "重装骑兵(希腊)": {"name": "重装骑兵", "faction": "greek", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 16, "defense": 15, "min_damage": 10, "max_damage": 13, "hp": 36}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "斯巴达勇士(希腊)": {"name": "斯巴达勇士", "faction": "greek", "attributes": {"speed": 6, "max_troop_size": 149, "attack": 16, "defense": 17, "min_damage": 9, "max_damage": 12, "hp": 46}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "半人马(希腊)": {"name": "半人马", "faction": "greek", "attributes": {"speed": 8, "max_troop_size": 124, "attack": 19, "defense": 18, "min_damage": 9, "max_damage": 11, "hp": 100}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "长戟步兵(中国)": {"name": "长戟步兵", "faction": "chinese", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 12, "defense": 6, "min_damage": 4, "max_damage": 5, "hp": 25}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "盾兵(中国)": {"name": "盾兵", "faction": "chinese", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 5, "defense": 19, "min_damage": 2, "max_damage": 5, "hp": 25}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "连弩校尉(中国)": {"name": "连弩校尉", "faction": "chinese", "attributes": {"speed": 6, "max_troop_size": 149, "attack": 6, "defense": 6, "min_damage": 3, "max_damage": 7, "hp": 22}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "轻骑兵(中国)": {"name": "轻骑兵", "faction": "chinese", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 11, "defense": 11, "min_damage": 6, "max_damage": 8, "hp": 35}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "御林将军(中国)": {"name": "御林将军", "faction": "chinese", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 14, "defense": 17, "min_damage": 9, "max_damage": 14, "hp": 42}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "狴犴(中国)": {"name": "狴犴", "faction": "chinese", "attributes": {"speed": 8, "max_troop_size": 124, "attack": 21, "defense": 12, "min_damage": 6, "max_damage": 13, "hp": 62}, "tags": {"role": "melee", "size": 2, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "女娲(中国)": {"name": "女娲", "faction": "chinese", "attributes": {"speed": 6, "max_troop_size": 124, "attack": 20, "defense": 17, "min_damage": 9, "max_damage": 10, "hp": 100}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "努比亚卫兵(埃及)": {"name": "努比亚卫兵", "faction": "egyptian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 9, "defense": 8, "min_damage": 2, "max_damage": 5, "hp": 21}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "长弓兵(埃及)": {"name": "长弓兵", "faction": "egyptian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 10, "defense": 8, "min_damage": 3, "max_damage": 6, "hp": 19}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "精锐枪盾兵(埃及)": {"name": "精锐枪盾兵", "faction": "egyptian", "attributes": {"speed": 5, "max_troop_size": 149, "attack": 14, "defense": 11, "min_damage": 4, "max_damage": 7, "hp": 39}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "木乃伊战士(埃及)": {"name": "木乃伊战士", "faction": "egyptian", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 8, "defense": 6, "min_damage": 6, "max_damage": 7, "hp": 35}, "tags": {"role": "melee", "size": 1, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "皇家木乃伊(埃及)": {"name": "皇家木乃伊", "faction": "egyptian", "attributes": {"speed": 7, "max_troop_size": 149, "attack": 16, "defense": 12, "min_damage": 6, "max_damage": 10, "hp": 85}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "阿努比斯(埃及)": {"name": "阿努比斯", "faction": "egyptian", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 21, "defense": 16, "min_damage": 10, "max_damage": 13, "hp": 70}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}, "荷鲁斯(埃及)": {"name": "荷鲁斯", "faction": "egyptian", "attributes": {"speed": 4, "max_troop_size": 124, "attack": 21, "defense": 17, "min_damage": 10, "max_damage": 15, "hp": 130}, "tags": {"role": "melee_counter", "size": 3, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "梭镖投射手(阿兹特克)": {"name": "梭镖投射手", "faction": "aztec", "attributes": {"speed": 5, "max_troop_size": 174, "attack": 9, "defense": 8, "min_damage": 2, "max_damage": 5, "hp": 24}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "黑曜石刃枪兵(阿兹特克)": {"name": "黑曜石刃枪兵", "faction": "aztec", "attributes": {"speed": 6, "max_troop_size": 174, "attack": 14, "defense": 10, "min_damage": 4, "max_damage": 7, "hp": 36}, "tags": {"role": "melee_counter", "size": 1, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "美洲虎武士(阿兹特克)": {"name": "美洲虎武士", "faction": "aztec", "attributes": {"speed": 8, "max_troop_size": 149, "attack": 17, "defense": 14, "min_damage": 8, "max_damage": 10, "hp": 42}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "雄鹰武士(阿兹特克)": {"name": "雄鹰武士", "faction": "aztec", "attributes": {"speed": 7, "max_troop_size": 149, "attack": 14, "defense": 10, "min_damage": 6, "max_damage": 8, "hp": 36}, "tags": {"role": "melee_counter", "size": 2, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "巫师(阿兹特克)": {"name": "巫师", "faction": "aztec", "attributes": {"speed": 6, "max_troop_size": 149, "attack": 6, "defense": 10, "min_damage": 2, "max_damage": 4, "hp": 22}, "tags": {"role": "ranged", "size": 1, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "审判者(阿兹特克)": {"name": "审判者", "faction": "aztec", "attributes": {"speed": 6, "max_troop_size": 124, "attack": 16, "defense": 14, "min_damage": 8, "max_damage": 11, "hp": 90}, "tags": {"role": "melee_counter", "size": 3, "special_skills": ["counter_attack"], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": true}}, "羽蛇神(阿兹特克)": {"name": "羽蛇神", "faction": "aztec", "attributes": {"speed": 6, "max_troop_size": 124, "attack": 20, "defense": 16, "min_damage": 10, "max_damage": 15, "hp": 120}, "tags": {"role": "ranged", "size": 3, "special_skills": ["ranged"], "attack_pattern": "ranged", "is_melee": false, "is_ranged": true, "is_healer": false, "can_counter": false}}, "阿努比斯(替身)": {"name": "阿努比斯替身", "faction": "egyptian", "attributes": {"speed": 9, "max_troop_size": 149, "attack": 21, "defense": 16, "min_damage": 10, "max_damage": 13, "hp": 70}, "tags": {"role": "melee", "size": 3, "special_skills": [], "attack_pattern": "melee", "is_melee": true, "is_ranged": false, "is_healer": false, "can_counter": false}}};
 
 const SPECIAL_ABILITIES = {
   "影子武士(波斯)":   {dodge: 0.50},
@@ -547,31 +603,11 @@ const SPECIAL_ABILITIES = {
   "阿努比斯(埃及)":   {clone: 0.35}
 };
 
-const HIDDEN_UNITS = new Set(['阿努比斯(替身)']);
-const ROLE_LABELS = {
-  melee: '近战', melee_counter: '反击', ranged: '远程',
-  healer: '治疗', counter_attack: '反击', heal: '治疗'
-};
-const SKILL_DETAIL = {
-  dodge: '躲闪-50%几率闪避攻击',
-  counter_immune: '免疫反击-不会被反击',
-  fury: '愤怒反击-反击提升一半威力',
-  charge: '冲锋-首次攻击时增加冲锋伤害',
-  clone: '替身-进场时有几率生成替身',
-  formation: '战阵-攻击随机+7~10',
-  rebirth: '转化复生-转化击杀数的一半',
-  revive: '复活-35%几率复活20%单位',
-  rampage: '怒斩-击杀后40%几率再攻击',
-  triple_crossbow: '三连弩-3次射击，每次50%伤害',
-  breath: '吐息-3次攻击，每次55%伤害',
-  gale: '怒风-对远程单位提高20%伤害',
-  holy_light: '光明力量-对木乃伊类型造成双倍伤害',
-  lightning: '闪电-伤害减半',
-  teamwork: '团队作战-70%几率协同攻击造成50%伤害'
-};
+const MUMMY_TYPES = new Set(["皇家木乃伊(埃及)", "木乃伊战士(埃及)"]);
 
-// ==================== 面板数值系统 ====================
+// 用户可修改的面板数值覆盖存储（按 player 区分）
 const UNIT_OVERRIDES = {};
+// 模式开关（按红绿方独立）
 const ARES_MODE = { statsA: false, statsB: false };
 const RANGED_MODE = { statsA: false, statsB: false };
 const MENTU_MODE = { statsA: false, statsB: false };
@@ -581,11 +617,26 @@ const HUANGYUEYING_MODE = { statsA: false, statsB: false };
 const ERLANGSHEN_MODE = { statsA: false, statsB: false };
 const CHARGE_LEVEL = { statsA: 30, statsB: 30 };
 const CLONE_RATE = { statsA: 35, statsB: 35 };
-
 function playerToKey(player) { return (player === '甲' ? 'statsA_' : 'statsB_'); }
-
 function getUnitAttr(unitName, player) {
   const key = playerToKey(player) + unitName;
+  // 阿努比斯(替身) 每次都重新同步 阿努比斯(埃及) 的面板覆盖数据
+  if (unitName === '阿努比斯(替身)') {
+    const origKey = playerToKey(player) + '阿努比斯(埃及)';
+    if (!UNIT_OVERRIDES[origKey]) {
+      getUnitAttr('阿努比斯(埃及)', player); // 触发创建本体覆盖数据
+    }
+    const o = UNIT_OVERRIDES[origKey];
+    UNIT_OVERRIDES[key] = {
+      speed: o.speed, attack: o.attack, defense: o.defense,
+      min_damage: o.min_damage, max_damage: o.max_damage,
+      hp: 0.001,  // 替身HP=0.001，任何正数伤害即死
+      max_troop_size: o.max_troop_size,
+      orig_max_troop_size: o.orig_max_troop_size
+    };
+    return UNIT_OVERRIDES[key];
+  }
+
   if (!UNIT_OVERRIDES[key]) {
     const orig = UNITS_DB[unitName].attributes;
     UNIT_OVERRIDES[key] = {
@@ -597,7 +648,6 @@ function getUnitAttr(unitName, player) {
   }
   return UNIT_OVERRIDES[key];
 }
-
 function updateBuffHint(side, type) {
   const el = document.getElementById(type === 'atk' ? 'atkBuff' + side : 'defBuff' + side);
   const hint = document.getElementById('hint' + side + '_' + type);
@@ -633,6 +683,7 @@ function toggleRanged(containerId) {
     btn.textContent = RANGED_MODE[containerId] ? 'ON' : 'OFF';
     btn.classList.toggle('on', RANGED_MODE[containerId]);
   }
+  // 刷新面板显示
   const sel = containerId === 'statsA' ? selA : selB;
   updateUnitStats(sel.value, containerId);
 }
@@ -713,7 +764,9 @@ function stripSuffix(name) {
   return idx > 0 ? name.slice(0, idx) : name;
 }
 
-// ==================== 初始化下拉选单 ====================
+// ==================== 1. 初始化下拉选单 ====================
+// 下拉列表排除内部兵种（替身等）
+const HIDDEN_UNITS = new Set(['阿努比斯(替身)']);
 const unitNames = Object.keys(UNITS_DB).filter(name => !HIDDEN_UNITS.has(name));
 const selA = document.getElementById('unitA');
 const selB = document.getElementById('unitB');
@@ -724,6 +777,28 @@ unitNames.forEach(name => {
 selA.value = "影子武士(波斯)";
 selB.value = "荷鲁斯(埃及)";
 
+const ROLE_LABELS = {
+  melee: '近战', melee_counter: '反击', ranged: '远程',
+  healer: '治疗', counter_attack: '反击', heal: '治疗'
+};
+const SKILL_DETAIL = {
+  dodge: '躲闪-50%几率闪避攻击',
+  counter_immune: '免疫反击-不会被反击',
+  fury: '愤怒反击-反击提升一半威力',
+  charge: '冲锋-首次攻击时增加冲锋伤害',
+  clone: '替身-进场时有几率生成替身',
+  formation: '战阵-攻击随机+7~10',
+  rebirth: '转化复生-转化击杀数的一半',
+  revive: '复活-35%几率复活20%单位',
+  rampage: '怒斩-击杀后40%几率再攻击',
+  triple_crossbow: '三连弩-3次射击，每次50%伤害',
+  breath: '吐息-3次攻击，每次55%伤害',
+  gale: '怒风-对远程单位提高20%伤害',
+  holy_light: '光明力量-对木乃伊类型造成双倍伤害',
+  lightning: '闪电-伤害减半',
+  teamwork: '团队作战-70%几率协同攻击造成50%伤害'
+};
+
 function fmtSkills(skills) {
   if (!skills || skills.length === 0) return '<span class="no-skill">无</span>';
   return skills.map(s => ROLE_LABELS[s] || s).join('，');
@@ -731,6 +806,7 @@ function fmtSkills(skills) {
 
 function fmtSpecial(unitName, spec) {
   if (!spec) {
+    // 女祭司等特色：从基础技能推断
     const data = UNITS_DB[unitName];
     if (data && data.tags.role === 'healer') return '治疗';
     return '<span class="no-skill">无</span>';
@@ -752,6 +828,7 @@ function updateUnitStats(unitName, containerId) {
   const t = data.tags;
   const spec = SPECIAL_ABILITIES[unitName];
   let roleLabel = ROLE_LABELS[t.role] || t.role;
+  // 泰坦远程模式：基础技能"近战"改为"远程"
   if (unitName === '泰坦(希腊)' && RANGED_MODE[containerId]) {
     roleLabel = '远程';
   }
@@ -808,6 +885,7 @@ function updateStatDisplay(containerId, attr, newVal) {
   if (attr === 'max_troop_size') {
     document.getElementById('cap' + side.toUpperCase()).textContent = '上限: ' + newVal;
     const input = document.getElementById('count' + side.toUpperCase());
+    const oldVal = parseInt(input.value);
     input.max = newVal;
     input.value = newVal;
   }
@@ -843,7 +921,670 @@ selB.onchange = () => { clearOverrides('statsB'); RANGED_MODE.statsB = false; AR
 updateCap('a');
 updateCap('b');
 
-// ==================== UI 控制 ====================
+// ==================== 2. 工具函数 ====================
+function randint(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function calcDamage(Num, L, Rmin, Rmax, A, D) {
+  const R = randint(Rmin, Rmax);
+  let dmg;
+  if (A > D) dmg = Num * (L + R * (1 + (A - D) * 0.1));
+  else if (A < D) dmg = Num * (L + R * (1 - (D - A) * 0.05));
+  else dmg = Num * (L + R);
+  return Math.max(0, Math.round(dmg));
+}
+
+// ==================== 3. 部队类 ====================
+class Squad {
+  constructor(player, unitName, count, logs, atkBuff, defBuff) {
+    this.player = player;
+    this.unitName = unitName;
+    this.logs = logs;
+    const attr = UNITS_DB[unitName].attributes;
+    const tags = UNITS_DB[unitName].tags;
+
+    const ov = getUnitAttr(unitName, player);
+    this.maxCount = count;
+    this.troopCap = ov.max_troop_size;
+    this.count = count;
+    this.hpEach = ov.hp;
+    this.totalHp = count * ov.hp;
+
+    this.attack = ov.attack;
+    this.defense = ov.defense;
+    this.minDmg = ov.min_damage;
+    this.maxDmg = ov.max_damage;
+    this.speed = ov.speed;
+
+    this.skills = tags.special_skills || [];
+    this.isRanged = tags.is_ranged || false;
+    this.special = SPECIAL_ABILITIES[unitName] || {};
+    // 泰坦远程模式
+    const isRangedOn = unitName === '泰坦(希腊)' && RANGED_MODE[player === '甲' ? 'statsA' : 'statsB'];
+    if (isRangedOn) {
+      this.isRanged = true;
+      this.special = Object.assign({}, this.special, { lightning: true });
+    }
+    this.firstAttack = true;
+    this.roll = 0;
+    this.atkBuff = atkBuff || 0;
+    this.defBuff = defBuff || 0;
+    this.getEnemy = null;
+  }
+
+  fmt() {
+    const isClone = this.unitName === '阿努比斯(替身)';
+    const base = stripSuffix(this.unitName);
+    return this.player === '甲' ? '[[R:' + base + (isClone ? '(替身)' : '') + ']]' : '[[G:' + base + (isClone ? '(替身)' : '') + ']]';
+  }
+  fmtCount() { return this.fmt() + '(' + this.count + ')'; }
+
+  log(msg) { this.logs.push(msg); }
+  get alive() { return this.totalHp > 0; }
+
+  sync() {
+    if (this.totalHp <= 0) this.count = 0;
+    else this.count = Math.ceil(this.totalHp / this.hpEach);
+  }
+
+  takeDamage(dmg) {
+    this.totalHp -= dmg;
+    if (this.totalHp < 0) this.totalHp = 0;
+    this.sync();
+  }
+
+  strike(target, multiplier) {
+    let base = this.calcStrikeDamage(target);
+    let final = this.applyStrikeBonus(base);
+    // 攻击方增伤与被攻击方减伤为加减法关系（净Buff = 攻击值 - 防御值）
+    const netBuff = this.atkBuff - target.defBuff;
+    if (netBuff !== 0) {
+      const netMult = Math.max(0, 1 + netBuff / 4000);
+      final = Math.floor(final * netMult);
+    }
+    if (multiplier !== 1.0) final = Math.max(0, Math.round(final * multiplier));
+    const [dmg, kills] = this.dealStrikeDamage(final, target);
+    return [dmg, kills];
+  }
+
+  calcStrikeDamage(target) {
+    let atk = this.attack;
+    if (this.special.formation) {
+      const bonus = randint(7, 10);  // 战阵：攻击 +7~10
+      atk += bonus;
+      this.log('    ' + this.fmt() + ' 战阵触发！攻击 +' + bonus + ' → ' + atk);
+    }
+    // 光明力量：对木乃伊类型造成双倍伤害
+    if (this.special.holy_light && MUMMY_TYPES.has(target.unitName)) {
+      this.log('    ' + this.fmt() + ' 光明力量！对木乃伊造成双倍伤害');
+      var hlMult = 2.0;
+    } else {
+      var hlMult = 1.0;
+    }
+    // 闪电：伤害减半
+    if (this.special.lightning) {
+      this.log('    ' + this.fmt() + ' 闪电！伤害减半');
+      var lnMult = 0.5;
+    } else {
+      var lnMult = 1.0;
+    }
+    let dmg = Math.round(calcDamage(this.count, this.minDmg, this.minDmg, this.maxDmg, atk, target.defense) * hlMult * lnMult);
+    if (this.special.gale && target.isRanged) {
+      const isSaladinOn = SALADIN_MODE[this.player === '甲' ? 'statsA' : 'statsB'];
+      const galeBonus = isSaladinOn ? (this.special.gale + 0.20) : this.special.gale;
+      dmg = Math.round(dmg * (1 + galeBonus));
+      this.log('    ' + this.fmt() + (isSaladinOn ? ' 萨拉丁·怒风！' : ' 怒风！') + '对远程伤害 +' + (galeBonus * 100).toFixed(0) + '% → ' + dmg);
+    }
+    return dmg;
+  }
+
+  applyStrikeBonus(base) {
+    let mult = 1.0;
+    if (this.special.charge && this.firstAttack) {
+      const fullHp = this.maxCount * this.hpEach;
+      if (this.totalHp >= fullHp) {
+        const chargePct = CHARGE_LEVEL[this.player === '甲' ? 'statsA' : 'statsB'];
+        mult += chargePct / 100;
+        this.log('    ' + this.fmt() + ' 冲锋！');
+      }
+      this.firstAttack = false;
+    }
+    return Math.max(0, Math.round(base * mult));
+  }
+
+  dealStrikeDamage(dmg, target) {
+    const oldCount = target.count;
+    target.takeDamage(dmg);
+    return [dmg, oldCount - target.count];
+  }
+
+  applyAfterStrike(kills, target) {
+    if (this.special.rebirth && kills > 0 && !MUMMY_TYPES.has(target.unitName) && target.unitName !== '阿努比斯(替身)') {
+      const isOsirisOn = OSIRIS_MODE[this.player === '甲' ? 'statsA' : 'statsB'];
+      const ratio = isOsirisOn ? 0.8 : 0.5;
+      const absorb = Math.ceil(kills * ratio);
+      const newCount = Math.min(this.count + absorb, this.maxCount);
+      const gain = newCount - this.count;
+      if (gain > 0) {
+        this.totalHp += gain * this.hpEach;
+        this.sync();
+        this.log('    ' + this.fmt() + (isOsirisOn ? ' 奥西里斯·转化复生！' : ' 转化复生！') + '吸收 ' + gain + ' 人 → ' + this.count + '人');
+      }
+    }
+  }
+
+  tryDodge() {
+    const rate = this.special.dodge || 0;
+    return rate > 0 && Math.random() < rate;
+  }
+
+  tryCounterImmune() { return (this.special.counter_immune || 0) > 0; }
+
+  tryRevive(preCount) {
+    if (!this.special.revive) return;
+    if (!this.alive || this.count <= 0) return;
+    if (this.count >= preCount) return;
+    const reviveAmount = Math.floor(this.maxCount * this.special.revive);
+    const threshold = this.maxCount - reviveAmount;
+    if (this.count >= threshold) return;
+    if (Math.random() >= 0.35) return;
+    const newCount = Math.min(this.count + reviveAmount, this.maxCount);
+    const gain = newCount - this.count;
+    if (gain > 0) {
+      this.totalHp += gain * this.hpEach;
+      this.sync();
+      this.log('    ' + this.fmt() + ' 复活！恢复 ' + gain + ' 人 → ' + this.count + '人');
+    }
+  }
+
+  canCounter(attacker) {
+    if (!this.alive) return false;
+    if (!this.skills.includes('counter_attack')) return false;
+    if (attacker.isRanged || attacker.tryCounterImmune()) return false;
+    return true;
+  }
+
+  counterStrike(attacker) {
+    if (!this.canCounter(attacker)) return 0;
+    const base = calcDamage(this.count, this.minDmg, this.minDmg, this.maxDmg, this.attack, attacker.defense);
+    let mult = 0.5;
+    let tag = '反击';
+    if (this.special.fury) {
+      mult *= 1.5; // 愤怒：乘法加成
+      tag = '愤怒反击';
+    }
+    const isMentuOn = MENTU_MODE[this.player === '甲' ? 'statsA' : 'statsB'];
+    if (isMentuOn) {
+      mult += 0.5; // 孟图：加法加成
+      tag = this.special.fury ? '愤怒·孟图反击' : '孟图反击';
+    }
+    const dmg = Math.max(0, Math.round(base * mult));
+    attacker.takeDamage(dmg);
+    this.log('    ' + this.fmt() + ' ' + tag + '！造成 ' + dmg + ' 伤害');
+    return dmg;
+  }
+
+  handleCounter(target) {
+    if (!target.alive) return;
+    if (target.canCounter(this)) {
+      const preCount = this.count;
+      target.counterStrike(this);
+      this.log('    ' + this.fmt() + ' ' + preCount + ' → ' + this.count);
+      if (!this.alive) this.log('    ' + this.fmt() + ' 被反击致死！');
+    } else if (this.isRanged) {
+      // 远程不显示任何反击相关内容
+    } else if (target.skills.includes('counter_attack') && this.tryCounterImmune()) {
+      this.log('    ' + this.fmt() + ' 免疫了反击！');
+    }
+    // 目标没有反击能力：什么都不显示
+  }
+
+  performStrikeSequence(target, multiplier, skipMultiplier) {
+    if (!this.alive) return false;
+
+    if (target.tryDodge()) {
+      if (this.special.charge && this.firstAttack) {
+        this.firstAttack = false;
+      }
+      this.log('  ' + this.fmtCount() + ' → ' + target.fmtCount() + ' 被闪避！');
+      this.handleCounter(target);
+      return false;
+    }
+
+    const preCount = target.count;
+    const [dmg, kills] = this.strike(target, multiplier);
+    const causedDeath = target.count < preCount;
+
+    if (multiplier !== 1.0 && !skipMultiplier) {
+      this.log('  ' + this.fmtCount() + ' → ' + target.fmt() + ' 造成 ' + dmg + ' 伤害 (×' + (multiplier*100).toFixed(0) + '%)');
+    } else {
+      this.log('  ' + this.fmtCount() + ' → ' + target.fmt() + ' 造成 ' + dmg + ' 伤害');
+    }
+    this.log('    ' + target.fmt() + ' ' + preCount + ' → ' + target.count);
+
+    this.applyAfterStrike(kills, target);
+    target.tryRevive(preCount);
+    this.handleCounter(target);
+    return causedDeath;
+  }
+
+  performMultiStrike(target, shots, mult, shotName) {
+    this.log('  ' + this.fmt() + ' ' + shotName + '！');
+    for (let i = 0; i < shots; i++) {
+      if (!this.alive || !target.alive) return shots - i; // 目标死了，返回剩余次数
+      const pct = (mult * 100).toFixed(0);
+      const label = shotName === '吐息' ? '次喷射' : '箭';
+      this.log('    第' + (i+1) + label + '（' + pct + '%伤害）:');
+      this.performStrikeSequence(target, mult, true);
+    }
+    return 0; // 全部射完
+  }
+
+  performRampage(target) {
+    let causedDeath = this.performStrikeSequence(target, 1.0);
+    const isAresOn = ARES_MODE[this.player === '甲' ? 'statsA' : 'statsB'];
+    const rampageRate = isAresOn ? 0.9 : (this.special.rampage || 0);
+    if (causedDeath && rampageRate && Math.random() < rampageRate) {
+      if (this.alive && target.alive) {
+        this.log('  ' + this.fmt() + (isAresOn ? ' 阿瑞斯·怒斩！' : ' 怒斩！'));
+        this.performStrikeSequence(target, 1.0);
+      }
+    }
+    // 团队作战：70%几率触发一次50%，二郎神模式100%触发两次50%
+    // 在内部尽可能执行，剩余次数由外部"全军覆没模块"处理
+    const isErOn = ERLANGSHEN_MODE[this.player === '甲' ? 'statsA' : 'statsB'];
+    const teamRate = isErOn ? 1.0 : (this.special.teamwork || 0);
+    const teamShots = isErOn ? 2 : 1;
+    this._teamRem = 0;
+    this._teamIsEr = isErOn;
+    if (this.special.teamwork && this.alive && Math.random() < teamRate) {
+      this._teamRem = teamShots;
+      let currentTarget = target;
+      while (this._teamRem > 0 && this.alive) {
+        if (!currentTarget || !currentTarget.alive) break;
+        this.log('  ' + this.fmt() + (this._teamIsEr ? ' 二郎神·团队作战！' : ' 团队作战！') + '（50%伤害）');
+        this.performStrikeSequence(currentTarget, 0.5, true);
+        this._teamRem--;
+      }
+    }
+    return causedDeath;
+  }
+
+
+}
+
+function priorityKey(s) { return [-s.speed, -s.roll]; }
+
+function simulateRelay(unitA, countA, groupsA, unitB, countB, groupsB, logs, atkBuffA, defBuffA, atkBuffB, defBuffB) {
+  const FAST_MODE = groupsA > 10 && groupsB > 10;
+  const totalAStart = countA * groupsA;
+  const totalBStart = countB * groupsB;
+  let totalAEnd = 0, totalBEnd = 0;
+  let aGroupsLeft = 0, bGroupsLeft = 0;
+
+  function log(line) { if (!FAST_MODE) logs.push(line); }
+
+  const queueA = Array(groupsA).fill(countA);
+  const queueB = Array(groupsB).fill(countB);
+
+  // 第一组上场：按35%概率检查替身生成（队列每个元素 = 一组阿努比斯，含替身+本体）
+  const specA = SPECIAL_ABILITIES[unitA];
+  const isCloneA = specA && specA.clone && Math.random() < CLONE_RATE.statsA / 100;
+  const specB = SPECIAL_ABILITIES[unitB];
+  const isCloneB = specB && specB.clone && Math.random() < CLONE_RATE.statsB / 100;
+
+  let curA = new Squad('甲', isCloneA ? '阿努比斯(替身)' : unitA, queueA.shift(), logs, atkBuffA, defBuffA);
+  if (FAST_MODE) curA.log = function() {};
+  curA.getEnemy = function() { return curB; };
+  let curB = new Squad('乙', isCloneB ? '阿努比斯(替身)' : unitB, queueB.shift(), logs, atkBuffB, defBuffB);
+  if (FAST_MODE) curB.log = function() {};
+  curB.getEnemy = function() { return curA; };
+  let groupNumA = 1, groupNumB = 1;
+
+  const displayNameA = unitA === '阿努比斯(替身)' ? '阿努比斯' : stripSuffix(unitA);
+  const displayNameB = unitB === '阿努比斯(替身)' ? '阿努比斯' : stripSuffix(unitB);
+  logs.push('=== 接力模式：[[R:' + displayNameA + ']](' + countA + ')×' + groupsA + ' vs [[G:' + displayNameB + ']](' + countB + ')×' + groupsB + ' ===');
+  if (isCloneA && !FAST_MODE) logs.push('[[R:阿努比斯]] 替身！');
+  if (isCloneB && !FAST_MODE) logs.push('[[G:阿努比斯]] 替身！');
+  logs.push('');
+
+  function assignRoll(squad) {
+    const used = new Set();
+    if (curA.alive && curA !== squad && curA.speed === squad.speed) used.add(curA.roll.toFixed(8));
+    if (curB.alive && curB !== squad && curB.speed === squad.speed) used.add(curB.roll.toFixed(8));
+    let roll;
+    do { roll = Math.random(); } while (used.has(roll.toFixed(8)));
+    squad.roll = roll;
+  }
+
+  function getSpeedLineBottom(acted) {
+    // 速度线底部 = 已行动中(speed, roll)最低的那个
+    // 速度线从高到低扫，底部就是最慢/最小roll的位置
+    let bs = Infinity, br = Infinity;
+    for (const s of acted) {
+      if (s.speed < bs || (s.speed === bs && s.roll < br)) {
+        bs = s.speed; br = s.roll;
+      }
+    }
+    return [bs, br];
+  }
+
+  function isBehindSpeedLine(squad, bs, br) {
+    // 在速度线底部之后（更慢或同速更小roll）→ 可以行动
+    if (bs === Infinity) return true;           // 没人行动过
+    if (squad.speed < bs) return true;           // 更慢 → 在底部之下
+    if (squad.speed === bs && squad.roll <= br) return true;  // 同速更小roll
+    return false;  // 更快或同速更大roll → 进度已过，不能行动
+  }
+
+  const MAX_ROUNDS = Math.max(5000, (groupsA + groupsB) * 50);
+  let finalRound = 0;
+  for (let rnd = 1; rnd <= MAX_ROUNDS; rnd++) {
+    finalRound = rnd;
+    // 回合开始：当前组死亡且还有替补 → 立即换替补上场
+    if (!curA.alive && queueA.length) {
+      curA = new Squad('甲', unitA, queueA.shift(), logs, atkBuffA, defBuffA);
+      if (FAST_MODE) curA.log = function() {};
+      curA.getEnemy = function() { return curB; };
+      groupNumA++;
+      log('>>> ' + curA.fmt() + ' 第' + groupNumA + '组(' + curA.maxCount + ') 回合开始上场！');
+    }
+    if (!curB.alive && queueB.length) {
+      curB = new Squad('乙', unitB, queueB.shift(), logs, atkBuffB, defBuffB);
+      if (FAST_MODE) curB.log = function() {};
+      curB.getEnemy = function() { return curA; };
+      groupNumB++;
+      log('>>> ' + curB.fmt() + ' 第' + groupNumB + '组(' + curB.maxCount + ') 回合开始上场！');
+    }
+
+    if (curA.alive) assignRoll(curA);
+    if (curB.alive) assignRoll(curB);
+
+    if (!curA.alive && !queueA.length) {
+      log('\n=== 战斗结束：' + curB.fmt() + ' 胜利 ===');
+      const remB = 1 + queueB.length;
+      log('  ' + curB.fmt() + ' 剩余：' + curB.count + '/' + curB.maxCount + ' (' + remB + '/' + groupsB + '组)');
+      if (FAST_MODE) logFastResult();
+      return [unitB, curB.count, 0];
+    }
+    if (!curB.alive && !queueB.length) {
+      log('\n=== 战斗结束：' + curA.fmt() + ' 胜利 ===');
+      const remA = 1 + queueA.length;
+      log('  ' + curA.fmt() + ' 剩余：' + curA.count + '/' + curA.maxCount + ' (' + remA + '/' + groupsA + '组)');
+      if (FAST_MODE) logFastResult();
+      return [unitA, curA.count, 0];
+    }
+
+    log('\n--- 回合 ' + rnd + ' ---');
+
+    const aliveA = curA.alive, aliveB = curB.alive;
+    if (aliveA && aliveB) {
+      if (curA.speed !== curB.speed) {
+        log('  速度判定：' + (curA.speed > curB.speed ? curA.fmt() : curB.fmt()) + '先动');
+      } else {
+        log('  速度相同(' + curA.speed + ')，随机先手：' + (curA.roll > curB.roll ? curA.fmt() : curB.fmt()) + '先动');
+      }
+    }
+
+    let acted = new Set();
+
+    function canAct(squad, actedSet) {
+      if (actedSet.has(squad) || !squad.alive) return false;
+      const [bs, br] = getSpeedLineBottom(actedSet);
+      return isBehindSpeedLine(squad, bs, br);
+    }
+
+    function buildQueue(actedSet) {
+      const [bs, br] = getSpeedLineBottom(actedSet);
+      let q = [];
+      if (curA.alive && !actedSet.has(curA) && isBehindSpeedLine(curA, bs, br)) q.push(['甲', curA]);
+      if (curB.alive && !actedSet.has(curB) && isBehindSpeedLine(curB, bs, br)) q.push(['乙', curB]);
+      q.sort((a, b) => {
+        const ka = priorityKey(a[1]), kb = priorityKey(b[1]);
+        for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i] - kb[i];
+        return 0;
+      });
+      return q;
+    }
+
+    let queue = buildQueue(acted);
+
+    while (queue.length > 0) {
+      const [owner, attacker] = queue.shift();
+      acted.add(attacker);
+
+      let defender = owner === '甲' ? curB : curA;
+      if (!attacker.alive || !defender.alive) continue;
+
+      log('\n  ' + attacker.fmtCount() + ' 行动：');
+
+      let msRem = 0, msMult = 1.0, msLabel = '箭';
+
+      if (attacker.special.triple_crossbow) {
+        const isHYOn = HUANGYUEYING_MODE[attacker.player === '甲' ? 'statsA' : 'statsB'];
+        const tcMult = isHYOn ? 0.70 : attacker.special.triple_crossbow;
+        msRem = attacker.performMultiStrike(defender, 3, tcMult, isHYOn ? '黄月英·三连弩' : '三连弩');
+        msMult = tcMult;
+      } else if (attacker.special.breath) {
+        msRem = attacker.performMultiStrike(defender, 3, attacker.special.breath, '吐息');
+        msMult = attacker.special.breath;
+        msLabel = '次喷射';
+      } else {
+        attacker.performRampage(defender);
+      }
+
+      if (!attacker.alive) {
+        const ga = owner === '甲' ? groupNumA : groupNumB;
+        if (attacker.unitName === '阿努比斯(替身)') {
+          log('\n  ★ ' + attacker.fmt() + ' 全军覆没！');
+        } else {
+          log('\n  ★ ' + attacker.fmt() + ' 第' + ga + '组全军覆没！');
+        }
+        if (owner === '甲') {
+          if (attacker.unitName === '阿努比斯(替身)') {
+            // 替身死了 → 上真身（同一组，不消耗队列）
+            curA = new Squad('甲', unitA, attacker.maxCount, logs, atkBuffA, defBuffA);
+            if (FAST_MODE) curA.log = function() {};
+            curA.getEnemy = function() { return curB; };
+            log('>>> ' + curA.fmt() + ' 第' + groupNumA + '组(' + curA.maxCount + ') 上场！');
+            assignRoll(curA);
+            queue = buildQueue(acted);
+          } else if (queueA.length) {
+            // 真身死了 → 从队列取下一组，检查替身
+            const nextCountA = queueA.shift();
+            const isCloneA = SPECIAL_ABILITIES[unitA] && SPECIAL_ABILITIES[unitA].clone && Math.random() < CLONE_RATE.statsA / 100;
+            curA = new Squad('甲', isCloneA ? '阿努比斯(替身)' : unitA, nextCountA, logs, atkBuffA, defBuffA);
+            if (FAST_MODE) curA.log = function() {};
+            curA.getEnemy = function() { return curB; };
+            groupNumA++;
+            if (curA.unitName === '阿努比斯(替身)') {
+              log('>>> ' + curA.fmt() + ' 上场！');
+            } else {
+              log('>>> ' + curA.fmt() + ' 第' + groupNumA + '组(' + curA.maxCount + ') 上场！');
+            }
+            assignRoll(curA);
+            queue = buildQueue(acted);
+          } else {
+            log('\n=== 战斗结束：' + curB.fmt() + ' 胜利 ===');
+            const remB2 = 1 + queueB.length;
+            log('  ' + curB.fmt() + ' 剩余：' + curB.count + '/' + curB.maxCount + ' (' + remB2 + '/' + groupsB + '组)');
+            if (FAST_MODE) logFastResult();
+            return [unitB, curB.count, 0];
+          }
+        } else {
+          if (attacker.unitName === '阿努比斯(替身)') {
+            // 替身死了 → 上真身（同一组，不消耗队列）
+            curB = new Squad('乙', unitB, attacker.maxCount, logs, atkBuffB, defBuffB);
+            if (FAST_MODE) curB.log = function() {};
+            curB.getEnemy = function() { return curA; };
+            log('>>> ' + curB.fmt() + ' 第' + groupNumB + '组(' + curB.maxCount + ') 上场！');
+            assignRoll(curB);
+            queue = buildQueue(acted);
+          } else if (queueB.length) {
+            // 真身死了 → 从队列取下一组，检查替身
+            const nextCountB = queueB.shift();
+            const isCloneB = SPECIAL_ABILITIES[unitB] && SPECIAL_ABILITIES[unitB].clone && Math.random() < CLONE_RATE.statsB / 100;
+            curB = new Squad('乙', isCloneB ? '阿努比斯(替身)' : unitB, nextCountB, logs, atkBuffB, defBuffB);
+            if (FAST_MODE) curB.log = function() {};
+            curB.getEnemy = function() { return curA; };
+            groupNumB++;
+            if (curB.unitName === '阿努比斯(替身)') {
+              log('>>> ' + curB.fmt() + ' 上场！');
+            } else {
+              log('>>> ' + curB.fmt() + ' 第' + groupNumB + '组(' + curB.maxCount + ') 上场！');
+            }
+            assignRoll(curB);
+            queue = buildQueue(acted);
+          } else {
+            log('\n=== 战斗结束：' + curA.fmt() + ' 胜利 ===');
+            const remA2 = 1 + queueA.length;
+            log('  ' + curA.fmt() + ' 剩余：' + curA.count + '/' + curA.maxCount + ' (' + remA2 + '/' + groupsA + '组)');
+            if (FAST_MODE) logFastResult();
+            return [unitA, curA.count, 0];
+          }
+        }
+      }
+
+      if (!defender.alive) {
+        const gd = defender.player === '甲' ? groupNumA : groupNumB;
+        if (defender.unitName === '阿努比斯(替身)') {
+          log('\n  ★ ' + defender.fmt() + ' 全军覆没！');
+        } else {
+          log('\n  ★ ' + defender.fmt() + ' 第' + gd + '组全军覆没！');
+        }
+
+        // 全军覆没模块（接力模式）：替补上场 + 继续射击
+        while (true) {
+          // 1. 上场下一组（先不分配随机数）
+          if (defender.player === '甲') {
+            if (defender.unitName === '阿努比斯(替身)') {
+              // 替身死了 → 上真身（同一组，不消耗队列）
+              curA = new Squad('甲', unitA, defender.maxCount, logs, atkBuffA, defBuffA);
+              if (FAST_MODE) curA.log = function() {};
+              defender = curA; // 同步 defender 引用，避免下次循环误判
+              log('>>> ' + curA.fmt() + ' 第' + groupNumA + '组(' + curA.maxCount + ') 上场！');
+            } else if (!queueA.length) {
+              log('\n=== 战斗结束：' + curB.fmt() + ' 胜利 ===');
+              const remB = 1 + queueB.length;
+              log('  ' + curB.fmt() + ' 剩余：' + curB.count + '/' + curB.maxCount + ' (' + remB + '/' + groupsB + '组)');
+              if (FAST_MODE) logFastResult();
+              return [unitB, curB.count, 0];
+            } else {
+              // 真身死了 → 从队列取下一组，检查替身
+              const nextCountA = queueA.shift();
+              const isCloneA = SPECIAL_ABILITIES[unitA] && SPECIAL_ABILITIES[unitA].clone && Math.random() < CLONE_RATE.statsA / 100;
+              curA = new Squad('甲', isCloneA ? '阿努比斯(替身)' : unitA, nextCountA, logs, atkBuffA, defBuffA);
+              if (FAST_MODE) curA.log = function() {};
+              if (isCloneA) defender = curA; // 替身上场时同步 defender，避免循环中重复创建
+              groupNumA++;
+              if (curA.unitName === '阿努比斯(替身)') {
+                log('>>> ' + curA.fmt() + ' 上场！');
+              } else {
+                log('>>> ' + curA.fmt() + ' 第' + groupNumA + '组(' + curA.maxCount + ') 上场！');
+              }
+            }
+          } else {
+            if (defender.unitName === '阿努比斯(替身)') {
+              // 替身死了 → 上真身（同一组，不消耗队列）
+              curB = new Squad('乙', unitB, defender.maxCount, logs, atkBuffB, defBuffB);
+              if (FAST_MODE) curB.log = function() {};
+              defender = curB; // 同步 defender 引用，避免下次循环误判
+              log('>>> ' + curB.fmt() + ' 第' + groupNumB + '组(' + curB.maxCount + ') 上场！');
+            } else if (!queueB.length) {
+              log('\n=== 战斗结束：' + curA.fmt() + ' 胜利 ===');
+              const remA = 1 + queueA.length;
+              log('  ' + curA.fmt() + ' 剩余：' + curA.count + '/' + curA.maxCount + ' (' + remA + '/' + groupsA + '组)');
+              if (FAST_MODE) logFastResult();
+              return [unitA, curA.count, 0];
+            } else {
+              // 真身死了 → 从队列取下一组，检查替身
+              const nextCountB = queueB.shift();
+              const isCloneB = SPECIAL_ABILITIES[unitB] && SPECIAL_ABILITIES[unitB].clone && Math.random() < CLONE_RATE.statsB / 100;
+              curB = new Squad('乙', isCloneB ? '阿努比斯(替身)' : unitB, nextCountB, logs, atkBuffB, defBuffB);
+              if (FAST_MODE) curB.log = function() {};
+              if (isCloneB) defender = curB; // 替身上场时同步 defender，避免循环中重复创建
+              groupNumB++;
+              if (curB.unitName === '阿努比斯(替身)') {
+                log('>>> ' + curB.fmt() + ' 上场！');
+              } else {
+                log('>>> ' + curB.fmt() + ' 第' + groupNumB + '组(' + curB.maxCount + ') 上场！');
+              }
+            }
+          }
+
+          // 2. 检查攻击方是否还有剩余箭数或团队作战次数
+          if ((msRem <= 0 && attacker._teamRem <= 0) || !attacker.alive) break;
+
+          // 3. 继续射击剩余次数（三连弩/吐息）
+          let shotNum = 4 - msRem;
+          while (msRem > 0 && attacker.alive) {
+            const currentTarget = defender.player === '甲' ? curA : curB;
+            if (!currentTarget.alive) break;
+            log('    第' + shotNum + msLabel + '（' + (msMult*100).toFixed(0) + '%伤害）:');
+            attacker.performStrikeSequence(currentTarget, msMult, true);
+            msRem--;
+            shotNum++;
+          }
+
+          // 3.5 处理团队作战剩余次数（狴犴二郎神模式等）
+          while (attacker._teamRem > 0 && attacker.alive) {
+            const currentTarget = defender.player === '甲' ? curA : curB;
+            if (!currentTarget.alive) break;
+            attacker.log('  ' + attacker.fmt() + (attacker._teamIsEr ? ' 二郎神·团队作战！' : ' 团队作战！') + '（50%伤害）');
+            attacker.performStrikeSequence(currentTarget, 0.5, true);
+            attacker._teamRem--;
+          }
+
+          // 4. 检查目标是否又被打死了
+          const currentTarget = defender.player === '甲' ? curA : curB;
+          if (currentTarget.alive) break;
+          // 目标又死了，播报并继续循环（重复模块）
+          const gc = currentTarget.player === '甲' ? groupNumA : groupNumB;
+          if (currentTarget.unitName === '阿努比斯(替身)') {
+            log('\n  ★ ' + currentTarget.fmt() + ' 全军覆没！');
+          } else {
+            log('\n  ★ ' + currentTarget.fmt() + ' 第' + gc + '组全军覆没！');
+          }
+        }
+
+        // 5. 攻击方行动结束，分配随机数，判定出手权
+        if (curA.alive) assignRoll(curA);
+        if (curB.alive) assignRoll(curB);
+        queue = buildQueue(acted);
+      }
+    }
+  }
+
+  log('\n=== 战斗结束：回合耗尽(' + MAX_ROUNDS + ')，平局 ===');
+  const remA3 = 1 + queueA.length;
+  const remB3 = 1 + queueB.length;
+  log('  ' + curA.fmt() + ' 剩余：' + curA.count + '/' + curA.maxCount + ' (' + remA3 + '/' + groupsA + '组)');
+  log('  ' + curB.fmt() + ' 剩余：' + curB.count + '/' + curB.maxCount + ' (' + remB3 + '/' + groupsB + '组)');
+  if (FAST_MODE) logFastResult();
+  return ['平局', curA.count, curB.count];
+  function logFastResult() {
+    const aAlive = curA.alive ? 1 : 0;
+    const bAlive = curB.alive ? 1 : 0;
+    const remA = (curA.alive ? curA.count : 0) + queueA.reduce(function(s,c){return s+c;}, 0);
+    const remB = (curB.alive ? curB.count : 0) + queueB.reduce(function(s,c){return s+c;}, 0);
+    const remGA = aAlive + queueA.length;
+    const remGB = bAlive + queueB.length;
+    const aLoss = totalAStart - remA;
+    const bLoss = totalBStart - remB;
+    // 伤亡对比：红方伤亡 / 绿方伤亡 = 比值
+    let ratioStr = '\n战损比：' + aLoss + '/' + bLoss;
+    if (bLoss > 0) ratioStr += ' = ' + (aLoss / bLoss).toFixed(4);
+
+    const redName = '[[R:' + stripSuffix(unitA) + ']]';
+    const greenName = '[[G:' + stripSuffix(unitB) + ']]';
+
+    logs.push("\n（双方组数均超过10组，进入快速模式）");
+    logs.push("=== 快速模式统计（第 " + finalRound + " 回合结束）===");
+    logs.push(redName + ": 初始 " + totalAStart + " 人(" + groupsA + "组) | 剩余 " + remA + " 人(" + remGA + "组)");
+    logs.push(greenName + ": 初始 " + totalBStart + " 人(" + groupsB + "组) | 剩余 " + remB + " 人(" + remGB + "组)" + ratioStr);
+  }
+
+}
+
+// ==================== 5. UI 控制 ====================
 const logArea = document.getElementById('logArea');
 const status = document.getElementById('status');
 
@@ -868,8 +1609,7 @@ function clearLog() {
   status.textContent = '就绪';
 }
 
-// ==================== 后端 API 调用 ====================
-async function startSim() {
+function startSim() {
   const btn = document.getElementById('btnStart');
   btn.disabled = true;
   clearLog();
@@ -888,85 +1628,22 @@ async function startSim() {
   if (countA > capA) countA = capA;
   if (countB > capB) countB = capB;
 
+  const logs = [];
+
   const atkBuffA = parseInt(document.getElementById('atkBuffA').value) || 0;
   const defBuffA = parseInt(document.getElementById('defBuffA').value) || 0;
   const atkBuffB = parseInt(document.getElementById('atkBuffB').value) || 0;
   const defBuffB = parseInt(document.getElementById('defBuffB').value) || 0;
 
-  const redOverrides = UNIT_OVERRIDES['statsA_' + unitA] || null;
-  const blueOverrides = UNIT_OVERRIDES['statsB_' + unitB] || null;
+  status.textContent = '模拟中...';
 
-  const payload = {
-    red: {
-      unitName: unitA,
-      count: countA,
-      groups: groupsA,
-      atkBuff: atkBuffA,
-      defBuff: defBuffA,
-      overrides: redOverrides,
-      modes: {
-        ares: ARES_MODE.statsA,
-        ranged: RANGED_MODE.statsA,
-        mentu: MENTU_MODE.statsA,
-        osiris: OSIRIS_MODE.statsA,
-        saladin: SALADIN_MODE.statsA,
-        huangyueying: HUANGYUEYING_MODE.statsA,
-        erlangshen: ERLANGSHEN_MODE.statsA,
-        chargeLevel: CHARGE_LEVEL.statsA,
-        cloneRate: CLONE_RATE.statsA
-      }
-    },
-    blue: {
-      unitName: unitB,
-      count: countB,
-      groups: groupsB,
-      atkBuff: atkBuffB,
-      defBuff: defBuffB,
-      overrides: blueOverrides,
-      modes: {
-        ares: ARES_MODE.statsB,
-        ranged: RANGED_MODE.statsB,
-        mentu: MENTU_MODE.statsB,
-        osiris: OSIRIS_MODE.statsB,
-        saladin: SALADIN_MODE.statsB,
-        huangyueying: HUANGYUEYING_MODE.statsB,
-        erlangshen: ERLANGSHEN_MODE.statsB,
-        chargeLevel: CHARGE_LEVEL.statsB,
-        cloneRate: CLONE_RATE.statsB
-      }
-    }
-  };
+  setTimeout(() => {
+    simulateRelay(unitA, countA, groupsA, unitB, countB, groupsB, logs, atkBuffA, defBuffA, atkBuffB, defBuffB);
 
-  status.textContent = '连接后端模拟中...';
-
-  try {
-    const response = await const response = await fetch('/api/simulate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-
-    if (!response.ok) {
-      const errData = await response.json().catch(() => ({}));
-      throw new Error(errData.error || 'HTTP ' + response.status);
-    }
-
-    const data = await response.json();
-
-    if (data.error) throw new Error(data.error);
-
-    data.logs.forEach(line => appendLog(line));
-    const winnerText = data.result.winner === '平局' ? '平局' :
-      (data.result.winner === unitA ? '红方胜利' : '绿方胜利');
-    status.textContent = '模拟完成 | ' + winnerText +
-      ' | 红剩' + data.result.redCount + ' | 绿剩' + data.result.blueCount;
-  } catch (err) {
-    appendLog('❌ 后端错误: ' + err.message);
-    appendLog('💡 请检查 API_BASE 是否已替换为你的 Worker 地址');
-    status.textContent = '错误: ' + err.message;
-  } finally {
+    logs.forEach(line => appendLog(line));
+    status.textContent = '模拟完成';
     btn.disabled = false;
-  }
+  }, 50);
 }
 
 // ==================== 制作信息弹窗 ====================
@@ -984,6 +1661,6 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeCredits();
 });
 </script>
-<!-- v:2026-07-31-v5.0-backend -->
+<!-- v:2026-07-07-v4.0 -->
 </body>
 </html>
